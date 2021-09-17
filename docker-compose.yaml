@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+    api:
+        image: node:latest
+        working_dir: /code
+        volumes:
+            - type: bind
+              source: ./api
+              target: /code
+
+    db:
+        image: postgres:latest
+        environment:
+            - POSTGRES_USER=quizz_team
+        volumes:
+            - "./db:/docker-entrypoint-initdb.d/:ro"

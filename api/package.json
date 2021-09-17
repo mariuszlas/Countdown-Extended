@@ -1,14 +1,21 @@
 {
-  "name": "api",
+  "name": "countdown-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon index.js",
+    "seedDev": "node dbConfig/seedDev.js",
+    "test": "jest --setupFiles ./tests/integration/config.js --watchAll --detectOpenHandles --runInBand --verbose"
   },
-  "author": "",
-  "license": "ISC",
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
+  "author": "Mariusz Las, Jasmine Appleby Holdham, Tobi Kuyoro & Gorazd Sumkovski",
+  "license": "MIT",
   "devDependencies": {
     "jest": "^27.2.0",
     "nodemon": "^2.0.12",
