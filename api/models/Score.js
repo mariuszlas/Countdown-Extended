@@ -21,11 +21,12 @@ class Score {
     static create(body) {
         return new Promise(async (res, rej) => {
             try {
-                const score = await db.query(`INSERT INTO scores (username, score)
+                const scoreData = await db.query(`INSERT INTO scores (username, score)
                                             VALUES ($1, $2)
                                             RETURNING username, score;`,
                                             [body.username, body.score]);
-                res(score.rows[0]);
+                const score = new Score(scoreData.rows[0]);
+                res(score);
             } catch (err) {
                 rej('Could not add the score to database');
             }
