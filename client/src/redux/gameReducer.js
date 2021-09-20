@@ -6,7 +6,7 @@ import {
     UPDATE_SOCKET,
     SET_ERROR,
     UPDATE_SCORE,
-    CURRENT_PLAYER
+    CURRENT_PLAYER,
 } from './constants';
 
 /**
@@ -20,8 +20,7 @@ const initialState = {
     roomNumber: null,
     gameSettings: {},
     questions: [],
-    currentPlayer: '',
-    questionNum: 0
+    currentPlayer: ''
 };
 
 const gameReducer = (state = initialState, action) => {
