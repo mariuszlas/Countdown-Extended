@@ -17,7 +17,7 @@ services:
     socket:
         container_name: countdown_dev_socket
         ports:
-            - 5000:5000
+            - 5001:5001
         environment:
             - NODE_ENV=development
         command: bash -c "npm install && npm run dev"
