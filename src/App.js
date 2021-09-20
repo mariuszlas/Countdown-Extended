@@ -1,14 +1,17 @@
 import React from 'react';
 
 //import pages and layouts here
+import { Landing } from './pages';
 
 //import app css here
 
 function App(){
 
     return(
-      <>
-        {/* layouts and pages go here */}
+        <>
+        <Switch>
+          <Route exact path="/"><Landing /></Route>
+        </Switch>
       </>
     );
   
