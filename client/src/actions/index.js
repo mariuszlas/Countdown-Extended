@@ -11,3 +11,12 @@ export const getQuestions = () => {
         }
     }
 }
+
+export const cleanString = str => {
+    const cleanStr = str
+        .replaceAll('&quot;', '"')
+        .replaceAll('&#039;', "'")
+        .replaceAll('&eacute;', 'e')
+        .replaceAll('&amp', ' & ')
+    return cleanStr
+}
