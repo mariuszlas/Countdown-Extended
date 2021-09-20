@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon index.js",
+        "start": "node index.js",
+        "dev": "nodemon index.js",
         "test": "jest --setupFiles ./test/integration/config.js --watchAll --detectOpenHandles --runInBand --verbose",
         "coverage": "jest --setupFiles ./test/integration/config.js --coverage"
     },
@@ -24,6 +25,7 @@
     "dependencies": {
         "cors": "^2.8.5",
         "express": "^4.17.1",
-        "pg": "^8.7.1"
+        "pg": "^8.7.1",
+        "socket.io": "^4.2.0"
     }
 }
