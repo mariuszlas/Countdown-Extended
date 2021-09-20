@@ -45,7 +45,7 @@ const gameReducer = (state = initialState, action) => {
                 ...state,
                 players: state.players.map(player =>
                     player.username === state.currentPlayer
-                        ? { ...player, totalScore: (totalScore += action.payload) }
+                        ? { ...player, totalScore: (player.totalScore += action.payload) }
                         : player
                 )
             };

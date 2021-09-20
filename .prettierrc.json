@@ -1,5 +1,5 @@
 {
-    "printWidth": 85,
+    "printWidth": 95,
     "tabWidth": 4,
     "arrowParens": "avoid",
     "bracketSpacing": true,
