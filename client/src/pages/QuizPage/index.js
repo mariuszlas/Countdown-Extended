@@ -26,6 +26,10 @@ export const QuizPage = () => {
         <>
         
         <h1>{cleanString(question.question)}</h1>
+    return (
+    <>
+
+    <h1>{questions[questionNum].question}</h1>
 
         <button onClick={submitAnswer} value={c_answer}>{c_answer}</button>
         <button onClick={submitAnswer} value={question.incorrect_answers[2]}>{question.incorrect_answers[2]}</button>
@@ -43,3 +47,5 @@ export const QuizPage = () => {
         return <h2>Fin</h2>
     }
 }
+
+export default QuizPage;

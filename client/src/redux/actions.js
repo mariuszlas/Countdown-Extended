@@ -8,10 +8,9 @@ import {
     UPDATE_SOCKET
 } from './constants';
 
-const players = useSelector(state => state.players);
-const socket = io.connect('http://localhost:3000');
 
-export const updateSocket = () => {
+
+export const updateSocket = (socket) => {
     return { type: UPDATE_SOCKET, payload: socket };
 };
 
@@ -20,7 +19,7 @@ export const updateSocket = () => {
  * @param {number} room random number generated in NewGame page.
  * @returns action to add a new player to existing list.
  */
-export const addPlayer = (username, room) => {
+export const addPlayer = (username, room, players) => {
     const player = {
         username,
         host: !players.length ? true : false,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Home, GameSetup, WaitingRoom, JoinRoom, GameRoom, GameResults, AllResults, QuizPage } from './pages';
+import { Home, GameSetup, WaitingRoom, JoinRoom, GameResults, AllResults, QuizPage } from './pages';
 import './index.css';
 
 function App() {
@@ -18,9 +18,6 @@ function App() {
                 </Route>
                 <Route path="/waiting-room">
                     <WaitingRoom />
-                </Route>
-                <Route path="/game-room">
-                    <GameRoom />
                 </Route>
                 <Route path="/game-results">
                     <GameResults />
