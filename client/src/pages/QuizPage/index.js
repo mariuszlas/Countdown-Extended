@@ -14,7 +14,7 @@ export const QuizPage = () => {
 
     return (
     <>
-    
+
     <h1>{questions[questionNum].question}</h1>
 
     <button>{questions[questionNum].correct_answer}</button>
@@ -29,3 +29,5 @@ export const QuizPage = () => {
     </>
     )
 }
+
+export default QuizPage;
