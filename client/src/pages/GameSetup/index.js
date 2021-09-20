@@ -67,7 +67,7 @@ function GameSetup() {
                 </div>
 
                 <label htmlFor="submit"></label>
-                <input id="submit" type="submit" value="Join the Waiting Room"/>
+                <input id="submit" type="submit" className="button" value="Join the Waiting Room"/>
             </form>
             </main>
         </>

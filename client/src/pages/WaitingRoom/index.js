@@ -54,7 +54,7 @@ function WaitingRoom() {
         <>
             <h2>Waiting room</h2>
             <p>Your room number is: {roomNo}</p>
-            <button onClick={e => startGame(e)}>Start Game</button>
+            <button onClick={e => startGame(e)} className="button">Start Game</button>
             <p>Players in room:</p>
             <p> </p>
         </>
