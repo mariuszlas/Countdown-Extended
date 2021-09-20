@@ -1,16 +1,15 @@
 import {
     ADD_PLAYER,
     ADD_QUESTIONS,
-    CURRENT_PLAYER,
     UPDATE_GAME_SETTINGS,
-    UPDATE_ROOM_NUMBER,
+    UPDATE_SCORE,
     UPDATE_SOCKET
 } from './constants';
 
 /**
- * @property players - array of 'player' objects with `username`, `isReady` and `totalScore` properties.
+ * @property players - array of 'player' objects with `username`, `host` and `totalScore` properties.
  * @property gameSettings - object with `difficulty` and `category` properties.
- * @property questions - array of questions as modeled in the Open Trivia API.
+ * @property questions - array of questions as modeled in the Open Trivia API, with the addition of a `isCorrect` property.
  */
 const initialState = {
     socket: null,
@@ -26,15 +25,25 @@ const gameReducer = (state = initialState, action) => {
         case UPDATE_SOCKET:
             return { ...state, socket: action.payload };
         case ADD_PLAYER:
-            return { ...state, players: [...state.players, action.payload] };
-        case UPDATE_ROOM_NUMBER:
-            return { ...state, roomNumber: action.payload };
+            return {
+                ...state,
+                players: [...state.players, action.payload.player],
+                roomNumber: action.payload.room,
+                currentPlayer: action.payload.player.username
+            };
         case UPDATE_GAME_SETTINGS:
             return { ...state, gameSettings: action.payload };
         case ADD_QUESTIONS:
             return { ...state, questions: action.payload };
-        case CURRENT_PLAYER:
-            return { ...state, currentPlayer: action.payload };
+        case UPDATE_SCORE:
+            return {
+                ...state,
+                players: state.players.map(player =>
+                    player.username === state.currentPlayer
+                        ? { ...player, totalScore: (totalScore += action.payload) }
+                        : player
+                )
+            };
         default:
             return state;
     }
