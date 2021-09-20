@@ -6,7 +6,7 @@ import './styles.css'
 const Header = () => {
     return (
         <nav>
-            <img src={Logo} alt="our logo"/>
+            <img src={Logo} className="logo" alt="our logo"/>
         </nav>
     );
 }
