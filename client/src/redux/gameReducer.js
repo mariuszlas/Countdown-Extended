@@ -19,8 +19,7 @@ const initialState = {
     roomNumber: null,
     gameSettings: {},
     questions: [],
-    currentPlayer: '',
-    questionNum: 0
+    currentPlayer: ''
 };
 
 const gameReducer = (state = initialState, action) => {
