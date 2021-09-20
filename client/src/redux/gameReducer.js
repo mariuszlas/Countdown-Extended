@@ -1,12 +1,11 @@
 import {
     ADD_PLAYER,
     ADD_QUESTIONS,
-    UPDATE_GAME_SETTINGS,
-    UPDATE_ROOM_NUMBER,
-    UPDATE_SOCKET,
-    SET_ERROR,
-    UPDATE_SCORE,
     CURRENT_PLAYER,
+    SET_ERROR,
+    UPDATE_GAME_SETTINGS,
+    UPDATE_SCORE,
+    UPDATE_SOCKET
 } from './constants';
 
 /**
@@ -41,7 +40,7 @@ const gameReducer = (state = initialState, action) => {
         case CURRENT_PLAYER:
             return { ...state, currentPlayer: action.payload };
         case SET_ERROR:
-            return {...state, error: action.payload};
+            return { ...state, error: action.payload };
         case UPDATE_SCORE:
             return {
                 ...state,
