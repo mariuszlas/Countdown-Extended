@@ -5,10 +5,9 @@ import {
     ADD_QUESTIONS,
     UPDATE_GAME_SETTINGS,
     UPDATE_SCORE,
-    UPDATE_SOCKET
+    UPDATE_SOCKET,
+    CURRENT_PLAYER
 } from './constants';
-
-
 
 export const updateSocket = (socket) => {
     return { type: UPDATE_SOCKET, payload: socket };
@@ -51,3 +50,7 @@ export const addQuestions = (category, difficulty) => async dispatch => {
 export const updateScore = score => {
     return { type: UPDATE_SCORE, payload: score };
 };
+
+export const setCurrentPlayer = username => {
+    return { type: CURRENT_PLAYER, payload: username };
+}
