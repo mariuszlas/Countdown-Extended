@@ -38,12 +38,10 @@ const gameReducer = (state = initialState, action) => {
             return { ...state, gameSettings: action.payload };
         case ADD_QUESTIONS:
             return { ...state, questions: action.payload };
-<<<<<<< HEAD
         case CURRENT_PLAYER:
             return { ...state, currentPlayer: action.payload };
         case SET_ERROR:
             return {...state, error: action.payload};
-=======
         case UPDATE_SCORE:
             return {
                 ...state,
@@ -53,7 +51,6 @@ const gameReducer = (state = initialState, action) => {
                         : player
                 )
             };
->>>>>>> 1610215821f49a560a48d62fd6b5c4b15ee2195b
         default:
             return state;
     }
