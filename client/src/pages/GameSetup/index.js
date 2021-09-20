@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+
+import { getQuestions } from '../../actions';
 
 function GameSetup() {
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
     function handleSubmit(e) {
         e.preventDefault();
         // send the username and game settings (diffcullty, category, etc.)
         // to the redux store
-        document.location = '/room';
+        dispatch(getQuestions());
+        history.push('/quiz-page');
     }
 
     return (

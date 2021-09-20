@@ -4,7 +4,8 @@ import {
     CURRENT_PLAYER,
     UPDATE_GAME_SETTINGS,
     UPDATE_ROOM_NUMBER,
-    UPDATE_SOCKET
+    UPDATE_SOCKET,
+    SET_ERROR
 } from './constants';
 
 /**
@@ -18,7 +19,8 @@ const initialState = {
     roomNumber: null,
     gameSettings: {},
     questions: [],
-    currentPlayer: ''
+    currentPlayer: '',
+    questionNum: 0
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -35,6 +37,8 @@ const gameReducer = (state = initialState, action) => {
             return { ...state, questions: action.payload };
         case CURRENT_PLAYER:
             return { ...state, currentPlayer: action.payload };
+        case SET_ERROR:
+            return {...state, error: action.payload};
         default:
             return state;
     }
