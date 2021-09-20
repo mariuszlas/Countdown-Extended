@@ -16,10 +16,10 @@ export const updateSocket = socket => {
  * @param {number} room random number generated in NewGame page.
  * @returns action to add a new player to existing list.
  */
-export const addPlayer = (username, room, players) => {
+export const addPlayer = (username, room, host) => {
     const player = {
         username,
-        host: !players.length ? true : false,
+        host: host,
         totalScore: 0
     };
 
@@ -49,6 +49,6 @@ export const updateScore = score => {
     return { type: UPDATE_SCORE, payload: score };
 };
 
-export const setCurrentPlayer = username => {
+export const addCurrentPlayer = username => {
     return { type: CURRENT_PLAYER, payload: username };
-}
+};

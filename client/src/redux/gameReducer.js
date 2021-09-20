@@ -30,8 +30,7 @@ const gameReducer = (state = initialState, action) => {
             return {
                 ...state,
                 players: [...state.players, action.payload.player],
-                roomNumber: action.payload.room,
-                currentPlayer: action.payload.player.username
+                roomNumber: action.payload.room
             };
         case UPDATE_GAME_SETTINGS:
             return { ...state, gameSettings: action.payload };

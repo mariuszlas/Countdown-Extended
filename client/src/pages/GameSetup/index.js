@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
-import { updateGameSettings, setCurrentPlayer } from '../../redux/actions.js';
+import { updateGameSettings, addPlayer, addCurrentPlayer } from '../../redux/actions.js';
 
 function GameSetup() {
 
@@ -28,9 +28,11 @@ function GameSetup() {
         const username = e.target.username.value;
         const category = e.target.category.value;
         const difficulty = e.target.difficulty.value;
+        const room = Math.round(Math.random() * 1000000000);
 
         dispatch(updateGameSettings(category, difficulty));
-        dispatch(setCurrentPlayer(username));
+        dispatch(addPlayer(username, room, true));
+        dispatch(addCurrentPlayer(username));
         history.push('/waiting-room')
     }
 
