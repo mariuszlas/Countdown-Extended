@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-
 import { updateGameSettings, addPlayer, addCurrentPlayer } from '../../redux/actions.js';
 
 function GameSetup() {
