@@ -2,11 +2,13 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { Home, GameSetup, WaitingRoom, JoinRoom, GameRoom, GameResults, AllResults } from './pages';
+import { Header, Footer } from './layout';
 import './index.css';
 
 function App() {
     return (
         <>
+            <Header />
             <Switch>
                 <Route exact path="/">
                     <Home />
