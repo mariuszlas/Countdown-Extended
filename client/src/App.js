@@ -32,6 +32,7 @@ function App() {
                     <AllResults />
                 </Route>
             </Switch>
+            <Footer /> 
         </>
     );
 }
