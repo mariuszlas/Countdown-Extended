@@ -10,7 +10,7 @@ function GameSetup() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="submit" />
+            <input type="submit" className="button"/>
         </form>
     );
 }
