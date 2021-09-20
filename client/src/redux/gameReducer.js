@@ -5,7 +5,8 @@ import {
     UPDATE_ROOM_NUMBER,
     UPDATE_SOCKET,
     SET_ERROR,
-    UPDATE_SCORE
+    UPDATE_SCORE,
+    CURRENT_PLAYER
 } from './constants';
 
 /**

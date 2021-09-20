@@ -2,9 +2,6 @@ export const UPDATE_SOCKET = 'UPDATE_SOCKET';
 export const ADD_PLAYER = 'ADD_PLAYER';
 export const UPDATE_GAME_SETTINGS = 'UPDATE_GAME_SETTINGS';
 export const ADD_QUESTIONS = 'ADD_QUESTIONS';
-<<<<<<< HEAD
 export const CURRENT_PLAYER = 'CURRENT_PLAYER';
 export const SET_ERROR = 'SET_ERROR'
-=======
 export const UPDATE_SCORE = 'UPDATE_SCORE';
->>>>>>> 1610215821f49a560a48d62fd6b5c4b15ee2195b
