@@ -1,7 +1,6 @@
 const { Server } = require('socket.io');
 const express = require('express');
 const http = require('http');
-const { getQuestions } = require('./requests.js');
 
 //--------------- CREATE HTTP SERVER AND MOUNT WEBSOCKET -----------//
 const app = express();
