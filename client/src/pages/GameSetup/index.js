@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
-import { addQuestions } from '../../redux/actions.js';
+import { updateGameSettings, setCurrentPlayer } from '../../redux/actions.js';
 
 function GameSetup() {
 
@@ -22,45 +22,52 @@ function GameSetup() {
         getCategories();
     }, [])
 
-    console.log(categories);
-
     function handleSubmit(e) {
         e.preventDefault();
+
         const username = e.target.username.value;
         const category = e.target.category.value;
         const difficulty = e.target.difficulty.value;
-        console.log(e.target.category.value);
 
-        // send the username and game settings (diffcullty, category, etc.)
-        // to the redux store
-
+        dispatch(updateGameSettings(category, difficulty));
+        dispatch(setCurrentPlayer(username));
+        history.push('/waiting-room')
     }
 
     return (
         <>
-        {/*Navbar*/}
-        <p role="game-instructions"></p>
-        <form role="game-setup" onSubmit={e => handleSubmit(e)}>
-            <label htmlFor="username"></label>
-            <input type="text" id="username" required/>
+        <nav>
+            {/*Home button*/}
+        </nav>
+        <main>
+            <p role="game-instructions">The quiz is composed of 10 questions. You can select the topic
+                and difficulty of the questions below. Each question has four different answers,
+                only one of them is correct. You will have 15 seconds to answers each question.
+            </p>
+            <form role="game-setup" onSubmit={e => handleSubmit(e)}>
+                <label htmlFor="username"></label>
+                <input type="text" id="username" placeholder='username' required/>
 
-            <label htmlFor="category"></label>
-            <select id="category" required>
-                <option value="" disabled selected hidden>Select Category</option>
-                {categories}
-            </select>
+                <div id="dropdowns">
+                    <label htmlFor="category"></label>
+                    <select id="category" defaultValue="" required>
+                        <option value="" disabled  hidden>Select Category</option>
+                        {categories}
+                    </select>
 
-            <label htmlFor="difficulty"></label>
-            <select id="difficulty" required>
-                <option value="" disabled selected hidden>Choose Difficulty</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select>
+                    <label htmlFor="difficulty"></label>
+                    <select id="difficulty" defaultValue="" required>
+                        <option value="" disabled hidden>Choose Difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
 
-            <label htmlFor="submit"></label>
-            <input id="submit" type="submit"/>
-        </form>
+                <label htmlFor="submit"></label>
+                <input id="submit" type="submit" value="Join the Waiting Room"/>
+            </form>
+            </main>
         </>
     );
 }
