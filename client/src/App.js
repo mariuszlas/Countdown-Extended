@@ -1,8 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { Home, GameSetup, WaitingRoom, JoinRoom, GameRoom, GameResults, AllResults } from './pages';
 import './index.css';
-
-import { Home, GameSetup, WaitingRoom, JoinRoom } from './pages';
 
 function App() {
     return (
@@ -11,14 +10,23 @@ function App() {
                 <Route exact path="/">
                     <Home />
                 </Route>
-                <Route path="/setup">
+                <Route path="/game-setup">
                     <GameSetup />
                 </Route>
-                <Route path="/room">
+                <Route path="/join-room">
+                    <JoinRoom />
+                </Route>
+                <Route path="/waiting-room">
                     <WaitingRoom />
                 </Route>
-                <Route path="/join">
-                    <JoinRoom />
+                <Route path="/game-room">
+                    <GameRoom />
+                </Route>
+                <Route path="/game-results">
+                    <GameResults />
+                </Route>
+                <Route path="/all-results">
+                    <AllResults />
                 </Route>
             </Switch>
         </>
