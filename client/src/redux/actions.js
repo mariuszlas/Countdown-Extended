@@ -35,11 +35,13 @@ export const updateGameSettings = (category, difficulty) => {
  * @param {string} category
  * @param {string} difficulty
  */
-export const addQuestions = (category, difficulty) => async dispatch => {
+export const addQuestions = async (dispatch, category, difficulty) => {
     try {
         const url = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
-        const { results } = await axios.get(url);
-        dispatch({ type: ADD_QUESTIONS, payload: results });
+        const results = await fetch(url);
+        const json = await results.json();
+        if (json.response_code !== 0) { throw new Error('Error fetching questions'); } // send error to the store
+        dispatch({ type: ADD_QUESTIONS, payload: json.results });
     } catch (error) {
         console.error('Error fetching questions ', error);
     }

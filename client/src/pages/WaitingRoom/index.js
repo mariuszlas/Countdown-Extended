@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { updateSocket } from '../../redux/actions.js';
+import { updateSocket, addQuestions } from '../../redux/actions.js';
 
 const url = 'http://localhost:5001';
 
@@ -14,6 +14,9 @@ function WaitingRoom() {
     const players = useSelector(state => state.players);
     const username = useSelector(state => state.currentPlayer);
     const roomNo = useSelector(state => state.roomNumber);
+    const gameSettings = useSelector(state => state.gameSettings);
+    const questions = useSelector(state => state.questions);
+    const socket = useSelector(state => state.socket);
 
     useEffect(() => {
         // connect the host of the game to the websocket
@@ -47,6 +50,8 @@ function WaitingRoom() {
 
     function startGame(e) {
         e.preventDefault();
+        console.log('handle start game');
+        addQuestions(dispatch, gameSettings.category, gameSettings.difficulty);
         socket.emit('send-questions', { questions: questions, roomNo: roomNo });
     }
 
@@ -54,7 +59,7 @@ function WaitingRoom() {
         <>
             <h2>Waiting room</h2>
             <p>Your room number is: {roomNo}</p>
-            <button onClick={e => startGame(e)}>Start Game</button>
+            <button onClick={startGame}>Start Game</button>
             <p>Players in room:</p>
             <p> </p>
         </>
