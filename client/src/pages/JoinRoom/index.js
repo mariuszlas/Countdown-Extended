@@ -11,7 +11,7 @@ function JoinRoom() {
         // document.location = '/room';
     }
 
-    return <form onSubmit={handleSubmit}></form>;
+    return <form onSubmit={handleSubmit} ></form>;
 }
 
 export default JoinRoom;
