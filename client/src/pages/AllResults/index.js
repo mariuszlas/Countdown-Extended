@@ -1,7 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { SET_ERROR } from '../../redux/constants';
 
 const AllResults = () => {
+    const dispatch = useDispatch();
+
     const [allScores, setAllScores] = useState([]);
     const playersByScore = [...allScores].sort(compareScore).reverse();
 
@@ -11,7 +15,8 @@ const AllResults = () => {
                 const scores = await axios.get('http://localhost:3000/score');
                 setAllScores(previous => [...previous, scores]);
             } catch (error) {
-                console.error(`Error getting scores from server `, error);
+                console.error(`Error getting scores from server `, error.message);
+                dispatch({ type: SET_ERROR, payload: error.message });
             }
         };
 
