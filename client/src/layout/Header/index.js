@@ -1,6 +1,13 @@
 import React from 'react';
+import Logo from './logo.png';
+
 import './styles.css'
 
-const Header = () => <nav>Logo</nav>;
-
+const Header = () => {
+    return (
+        <nav>
+            <img src={Logo} alt="our logo"/>
+        </nav>
+    );
+}
 export default Header;
