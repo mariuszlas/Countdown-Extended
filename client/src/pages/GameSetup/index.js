@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 
-import { getQuestions } from '../../actions';
+import { addQuestions } from '../../redux/actions.js';
 
 function GameSetup() {
 
@@ -30,11 +30,10 @@ function GameSetup() {
         const category = e.target.category.value;
         const difficulty = e.target.difficulty.value;
         console.log(e.target.category.value);
+
         // send the username and game settings (diffcullty, category, etc.)
         // to the redux store
 
-        dispatch(getQuestions());
-        // history.push('/quiz-page');
     }
 
     return (
