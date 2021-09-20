@@ -26,8 +26,6 @@ export const QuizPage = () => {
         <>
         
         <h1>{cleanString(question.question)}</h1>
-    return (
-    <>
 
     <h1>{questions[questionNum].question}</h1>
 
