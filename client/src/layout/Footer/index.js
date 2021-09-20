@@ -3,9 +3,9 @@ import '../styles.css'
 
 const Footer = () => {
     return (
-        <nav>
+        <footer>
             <p>Created by Mariuzs, Gorazd, Tobi and Jasmin</p>
-        </nav>
+        </footer>
     );
 }
 

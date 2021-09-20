@@ -2,9 +2,15 @@
 
 * {
     font-family: 'Poppins', sans-serif;
-}
-
-nav {
+    background-color: blue;
     text-align: center;
 }
 
+header {
+    background-color: #ffffff;
+    border-radius: 75px;
+    padding: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}

@@ -5,9 +5,9 @@ import '../styles.css'
 
 const Header = () => {
     return (
-        <nav>
+        <header>
             <img src={Logo} className="logo" alt="our logo"/>
-        </nav>
+        </header>
     );
 }
 export default Header;

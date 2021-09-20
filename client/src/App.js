@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 
 import { Home, GameSetup, WaitingRoom, JoinRoom, GameRoom, GameResults, AllResults } from './pages';
 import { Header, Footer } from './layout';
-import Background from './imgs/background.jpg';
 
 import './index.css';
 
@@ -11,7 +10,6 @@ function App() {
     return (
         <>
             <Header />
-            <div styles={{ backgroundImage:`url(${Background})` }}>
                 <Switch>
                     <Route exact path="/">
                         <Home />
@@ -35,7 +33,6 @@ function App() {
                         <AllResults />
                     </Route>
                 </Switch>
-                </div>
             <Footer /> 
         </>
     );
