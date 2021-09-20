@@ -9,6 +9,8 @@ import './index.css';
 function App() {
     return (
         <>
+    <div style={{backgroundImage: `url(${require("../src/imgs/background.jpg")})`,}} className="index">
+        </div>
             <Header />
                 <Switch>
                     <Route exact path="/">

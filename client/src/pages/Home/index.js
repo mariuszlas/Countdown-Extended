@@ -19,15 +19,7 @@ function Home() {
     }
 
     return (
-        <>
-
-<div style={
-   {
-      backgroundImage: `url(${require("../../imgs/background.jpg")})`,      
-   }
-}
-/> 
-                  
+        <>                  
         <div className="spacing">
                 <form onSubmit={newGame}>
                     <button type="submit" className="button">Start a New Game!</button>
