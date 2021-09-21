@@ -25,9 +25,11 @@ function Home() {
                 <form onSubmit={newGame}>
                     <button type="submit" className="button">Start a New Game!</button>
                 </form>
+                <br/>
                 <form onSubmit={joinGame}>
                     <button type="submit" className="button">Join a Game!</button>
                 </form>
+                <br/>
                 <form onSubmit={leaderBoards}>
                     <button type="submit" className="button">Check the Leaderboards!</button>
                 </form>
