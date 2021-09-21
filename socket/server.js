@@ -26,12 +26,11 @@ io.on('connection', socket => {
 
         const roomNo = parseInt(gameInfo.roomNo);
 
-        // const = Array.from(io.sockets.adapter.rooms.get(roomNo)).length;
-        //
-        // if (playersInRoom > 4) {
-        //     socket.emit('entry-denied');
-        //     socket.close();
-        // }
+        // check if room exists and if there are 4 sockets conected deny entry to next one
+        if (io.sockets.adapter.rooms.has(roomNo) && io.sockets.adapter.rooms.get(roomNo).size > 3) {
+            socket.emit('entry-denied', 'Entry denied. The maximal number of players in room was exceeded.');
+            socket.disconnect();
+        }
 
         const questionsData = await fetchQuestions(gameInfo.gameSettings);
         questions.push({ roomNo: roomNo, questions: questionsData, gameSettings: gameInfo.gameSettings });

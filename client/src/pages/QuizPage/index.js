@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from 'react-router'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 import { cleanString } from "../../actions";
@@ -7,16 +8,31 @@ import { cleanString } from "../../actions";
 export const QuizPage = () => {
 
     const questionsArr = useSelector(state => state.questions);
+    const difficulty = useSelector(state => state.gameSettings.difficulty.toLowerCase())
     
     const [key, setKey] = useState(0);
     const [n, setN] = useState(0);
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const question = questionsArr[Math.min(n, 9)];
 
     const c_answer = question.correct_answer;
-    const i_answers = question.incorrect_answers.slice(0, 3); // shouldn't need the .slice but first question is being weird
+    const i_answers = question.incorrect_answers.slice(0, 3); // shouldn't need the .slice but questions are being weird
+
+    function calcDuration() {
+        switch (difficulty) {
+            case 'easy':
+                return 45
+            case 'medium':
+                return 30
+            case 'hard':
+                return 15
+            default:
+                console.error('Difficulty is missing');
+        }
+    }
     
     function submitAnswer(e) {
         const submission = e.target.value;
@@ -42,8 +58,10 @@ export const QuizPage = () => {
         return (
         <>
         
-        <h1>{cleanString(question.question)}</h1>
+        <h1>{`Question ${n+1}:`}</h1>
+        <h2>{cleanString(question.question)}</h2>
 
+        <div style={{display: 'flex', justifyContent: 'center', paddingBottom: '1vh'}}>
         <CountdownCircleTimer
             onComplete={() => {
                 setKey(x => ++x);
@@ -51,7 +69,7 @@ export const QuizPage = () => {
             }}
             key={key}
             isPlaying
-            duration={10}
+            duration={calcDuration()}
             colors={[
             ['#004777', 0.33],
             ['#F7B801', 0.33],
@@ -60,6 +78,7 @@ export const QuizPage = () => {
         >
             {({ remainingTime }) => remainingTime}
         </CountdownCircleTimer>
+        </div>
 
         {answers.map((ans, index) => (
             <button onClick={submitAnswer} value={ans} key={index}>{cleanString(ans)}</button>
@@ -68,7 +87,11 @@ export const QuizPage = () => {
         </>
         )
     } else {
-        return <h2>Fin</h2>
+        return (
+            <>
+            {history.push('/game-results')}
+            </>
+        )
     }
 }
 
