@@ -1,0 +1,41 @@
+.spacing {
+    padding: 40px;
+}
+
+form {
+    padding: 20px;
+}
+
+#username {
+    font-size: large;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #ffffff;
+    padding: 10px;
+    margin: 20px 0px; 
+}
+
+#username:hover {
+    box-shadow:5px 5px 5px rgba(255, 255, 255, 0.562); 
+}
+
+.dropdown {
+    border-color: #7e7e7e;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: white;
+    padding: 15px 25px;
+}
+
+.button {
+    border-radius: 20px;
+    border-style: none;
+    background-color: #ffffff;
+    font-size: larger;
+    padding: 15px 25px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #ffffffa9;
+}
