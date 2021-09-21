@@ -25,16 +25,22 @@ io.on('connection', socket => {
     socket.on('add-player', async gameInfo => {
 
         const roomNo = parseInt(gameInfo.roomNo);
+
+        // check if room exists and if there are 4 sockets conected deny entry to next one
+        if (io.sockets.adapter.rooms.has(roomNo) && io.sockets.adapter.rooms.get(roomNo).size > 3) {
+            socket.emit('entry-denied', 'Entry denied. The maximal number of players in room was exceeded.');
+            socket.disconnect();
+        }
+
         const questionsData = await fetchQuestions(gameInfo.gameSettings);
-        questions.push({ roomNo: roomNo, questions: questionsData });
+        questions.push({ roomNo: roomNo, questions: questionsData, gameSettings: gameInfo.gameSettings });
 
         // add socket to an array of connected sockets
         const player = {
             socketId: socket.id,
             roomNo: roomNo,
             username: gameInfo.username,
-            host: gameInfo.host,
-            score: 0
+            host: gameInfo.host
         };
         socketsConnected.push(player);
         console.log('sockets in list', socketsConnected.length);
@@ -42,14 +48,14 @@ io.on('connection', socket => {
         // join the new room
         socket.join(roomNo);
         // send the correct questions to the newly joined clinet
-        const roomQuestions = questions.filter(q => parseInt(q.roomNo) === roomNo);
-        socket.emit('questions', roomQuestions[0].questions);
+        const roomData = questions.filter(q => parseInt(q.roomNo) === roomNo);
+        socket.emit('questions', roomData[0].questions);
 
         const currentPlayers = socketsConnected.filter(
             socket => parseInt(socket.roomNo) === roomNo && socket.username !== gameInfo.username);
 
         // send info about players that are already in the room to the player that has just joined in
-        socket.emit('players-in-room', currentPlayers);
+        socket.emit('players-in-room', { players: currentPlayers, gameSettings: roomData[0].gameSettings });
         // send info about new player to all other players
         socket.to(roomNo).emit('new-player-in-room', player);
 
