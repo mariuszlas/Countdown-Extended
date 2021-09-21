@@ -1,19 +1,30 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { SET_ERROR } from '../../redux/constants';
 
 const GameResults = () => {
+    const dispatch = useDispatch();
     const [scoreList, setScoreList] = useState([]);
 
     const socket = useSelector(state => state.socket);
     const players = useSelector(state => state.players);
     const currentPlayer = useSelector(state => state.currentPlayer);
+    const roomNumber = useSelector(state => state.roomNumber);
 
     const { totalScore, username } = players.find(player => player.username === currentPlayer);
 
-    const sendPlayerScore = () => {
-        socket.emit('sendPlayerScore', { username, totalScore });
+    const sendPlayerScore = async () => {
+        await socket.emit('sendPlayerScore', { username, totalScore, roomNumber });
         setScoreList(previousScores => [...previousScores, { username, totalScore }]);
+
+        try {
+            await axios.post('http://localhost:3000/score', { username, score: totalScore });
+        } catch (error) {
+            console.error(`Error adding score to server `, error.message);
+            dispatch({ type: SET_ERROR, payload: error.message });
+        }
     };
 
     const getRoomScores = () => {

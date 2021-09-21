@@ -4,7 +4,7 @@ import '../styles.css'
 const Footer = () => {
     return (
         <footer>
-            <p>Created by Mariuzs, Gorazd, Tobi and Jasmin</p>
+            <p>Created by Mariusz, Gorazd, Tobi and Jasmin</p>
         </footer>
     );
 }

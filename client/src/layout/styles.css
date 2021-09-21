@@ -2,8 +2,9 @@
 
 * {
     font-family: 'Poppins', sans-serif;
-    background-color: rgb(170, 230, 245);
+    /* background-color: rgb(170, 230, 245); */
     text-align: center;
+    /* background-image: url(../imgs/background.jpg); */
 }
 
 header {
