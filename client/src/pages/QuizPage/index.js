@@ -48,6 +48,10 @@ export const QuizPage = () => {
         }
     }
 
+    function resetScore() {
+        dispatch({ type: 'RESET_SCORE', payload: 0})
+    }
+
     function submitAnswer(e) {
         const submission = e.target.value;
         submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: calcScoreIncrement()}) : console.log('oops, wrong answer');
@@ -68,6 +72,8 @@ export const QuizPage = () => {
 
 
     if (n <= 9) {
+
+        n === 0 ? resetScore() : null;
 
         return (
         <>
