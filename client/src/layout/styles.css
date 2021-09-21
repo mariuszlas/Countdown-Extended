@@ -18,6 +18,10 @@ header {
     width: 50%;
 }
 
+.logo:hover {
+    cursor: pointer;
+}
+
 footer {
     font-size: smaller;
     position: fixed;
