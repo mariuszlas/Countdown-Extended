@@ -21,7 +21,7 @@ const AllResults = () => {
         };
 
         getScores();
-    }, [axios]);
+    }, []);
 
     console.log('playersByScore ', allScores);
 
