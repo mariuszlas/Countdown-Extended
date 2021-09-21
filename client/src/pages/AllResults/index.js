@@ -12,8 +12,8 @@ const AllResults = () => {
     useEffect(() => {
         const getScores = async () => {
             try {
-                const scores = await axios.get('http://localhost:3000/score');
-                setAllScores(previous => [...previous, scores]);
+                const { data } = await axios.get('http://localhost:3000/score');
+                setAllScores(data);
             } catch (error) {
                 console.error(`Error getting scores from server `, error.message);
                 dispatch({ type: SET_ERROR, payload: error.message });
@@ -21,14 +21,16 @@ const AllResults = () => {
         };
 
         getScores();
-    }, []);
+    }, [axios]);
+
+    console.log('playersByScore ', allScores);
 
     function compareScore(a, b) {
         let comparison = 0;
 
-        if (a.totalScore > b.totalScore) {
+        if (a.score > b.score) {
             comparison = 1;
-        } else if (a.totalScore < b.totalScore) {
+        } else if (a.score < b.score) {
             comparison = -1;
         }
 
@@ -36,20 +38,22 @@ const AllResults = () => {
     }
 
     return (
-        <>
-            {playersByScore.map(player => (
-                <table key={player.username}>
-                    <tr>
-                        <th>Username</th>
-                        <th>Score</th>
-                    </tr>
-                    <tr>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {playersByScore.map((player, index) => (
+                    <tr key={index}>
                         <td>{player.username}</td>
-                        <td>{player.totalScore}</td>
+                        <td>{player.score}</td>
                     </tr>
-                </table>
-            ))}
-        </>
+                ))}
+            </tbody>
+        </table>
     );
 };
 
