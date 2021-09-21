@@ -7,7 +7,6 @@ VALUES
 ('username_5', 19),
 ('username_6', 21),
 ('username_7', 45),
-('username_8', 39),
 ('username_8', 67);
 
 INSERT INTO usernames (name)
@@ -19,5 +18,4 @@ VALUES
 ('username_5'),
 ('username_6'),
 ('username_7'),
-('username_8'),
 ('username_8');
