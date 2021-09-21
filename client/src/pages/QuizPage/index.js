@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from 'react-router'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 import { cleanString } from "../../actions";
@@ -12,6 +13,7 @@ export const QuizPage = () => {
     const [n, setN] = useState(0);
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const question = questionsArr[Math.min(n, 9)];
 
@@ -42,7 +44,8 @@ export const QuizPage = () => {
         return (
         <>
         
-        <h1>{cleanString(question.question)}</h1>
+        <h1>{`Question ${n+1}:`}</h1>
+        <h2>{cleanString(question.question)}</h2>
 
         <CountdownCircleTimer
             onComplete={() => {
@@ -68,7 +71,11 @@ export const QuizPage = () => {
         </>
         )
     } else {
-        return <h2>Fin</h2>
+        return (
+            <>
+            {history.push('/game-results')}
+            </>
+        )
     }
 }
 
