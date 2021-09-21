@@ -16,7 +16,11 @@ export const cleanString = str => {
     const cleanStr = str
         .replaceAll('&quot;', '"')
         .replaceAll('&#039;', "'")
+        .replaceAll('&Eacute;', 'E')
         .replaceAll('&eacute;', 'e')
-        .replaceAll('&amp', ' & ')
+        .replaceAll('&amp;', ' & ')
+        .replaceAll('&Uuml;', 'U')
+        .replaceAll('&pi;', 'pi')
+        .replaceAll('&shy;', '')
     return cleanStr
 }

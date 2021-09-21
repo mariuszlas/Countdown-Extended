@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { cleanString } from '../../actions';
 
 const CorrectAnswers = () => {
     const questions = useSelector(state => state.questions);
@@ -9,8 +10,8 @@ const CorrectAnswers = () => {
             <h1>Correct Answers For Your Quiz</h1>
             {questions.map(q => (
                 <div key={q.question}>
-                    <p>{q.question}</p>
-                    <p>{q.correct_answer}</p>
+                    <p>{cleanString(q.question)}</p>
+                    <p>{cleanString(q.correct_answer)}</p>
                 </div>
             ))}
         </>

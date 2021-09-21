@@ -8,8 +8,9 @@ import { cleanString } from "../../actions";
 export const QuizPage = () => {
 
     const questionsArr = useSelector(state => state.questions);
-    const difficulty = useSelector(state => state.gameSettings.difficulty.toLowerCase())
-    
+    const difficulty = useSelector(state => state.gameSettings.difficulty.toLowerCase());
+    const currentScore = useSelector(state => state.players[0].totalScore);
+
     const [key, setKey] = useState(0);
     const [n, setN] = useState(0);
 
@@ -33,10 +34,27 @@ export const QuizPage = () => {
                 console.error('Difficulty is missing');
         }
     }
-    
+
+    function calcScoreIncrement() {
+        switch (difficulty) {
+            case 'easy':
+                return 1
+            case 'medium':
+                return 2
+            case 'hard':
+                return 3
+            default:
+                console.error('Difficulty is missing');
+        }
+    }
+
+    function resetScore() {
+        dispatch({ type: 'RESET_SCORE', payload: 0})
+    }
+
     function submitAnswer(e) {
         const submission = e.target.value;
-        submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: 1}) : console.log('oops, wrong answer');
+        submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: calcScoreIncrement()}) : console.log('oops, wrong answer');
         setKey(x => ++x);
         setN(x => ++x);
     }
@@ -54,6 +72,8 @@ export const QuizPage = () => {
 
 
     if (n <= 9) {
+
+        n === 0 ? resetScore() : null;
 
         return (
         <>
@@ -84,12 +104,13 @@ export const QuizPage = () => {
             <button onClick={submitAnswer} value={ans} key={index}>{cleanString(ans)}</button>
         ))}
 
+        <h3>Score: {currentScore}</h3>
         </>
         )
     } else {
         return (
             <>
-            {history.push('/game-results')}
+            {history.replace('/game-results')}
             </>
         )
     }

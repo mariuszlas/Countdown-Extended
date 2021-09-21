@@ -50,7 +50,7 @@ function WaitingRoom() {
             })
         });
 
-        socket.on('start-game', () => history.push('/quiz-page'));
+        socket.on('start-game', () => history.replace('/quiz-page'));
     }, []);
 
     function startGame(e) {
