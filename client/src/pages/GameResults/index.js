@@ -11,11 +11,12 @@ const GameResults = () => {
     const socket = useSelector(state => state.socket);
     const players = useSelector(state => state.players);
     const currentPlayer = useSelector(state => state.currentPlayer);
+    const roomNumber = useSelector(state => state.roomNumber);
 
     const { totalScore, username } = players.find(player => player.username === currentPlayer);
 
     const sendPlayerScore = async () => {
-        socket.emit('sendPlayerScore', { username, totalScore });
+        await socket.emit('sendPlayerScore', { username, totalScore, roomNumber });
         setScoreList(previousScores => [...previousScores, { username, totalScore }]);
 
         try {
