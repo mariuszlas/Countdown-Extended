@@ -1,0 +1,12 @@
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-results {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+}

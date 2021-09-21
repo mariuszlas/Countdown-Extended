@@ -16,6 +16,7 @@ const io = new Server(httpServer, {
 
 let socketsConnected = [];
 let questions = [];
+let allScores = [];
 
 io.on('connection', socket => {
 
@@ -26,14 +27,20 @@ io.on('connection', socket => {
 
         const roomNo = parseInt(gameInfo.roomNo);
 
-        // check if room exists and if there are 4 sockets conected deny entry to next one
+        // check if room exists and if there are 4 sockets conected deny entry to the room
         if (io.sockets.adapter.rooms.has(roomNo) && io.sockets.adapter.rooms.get(roomNo).size > 3) {
-            socket.emit('entry-denied', 'Entry denied. The maximal number of players in room was exceeded.');
+            socket.emit('entry-denied', 'Entry denied. The maximum number of players in room was exceeded.');
             socket.disconnect();
         }
 
         const questionsData = await fetchQuestions(gameInfo.gameSettings);
-        questions.push({ roomNo: roomNo, questions: questionsData, gameSettings: gameInfo.gameSettings });
+
+        questions.push({
+            roomNo: roomNo,
+            questions: questionsData,
+            gameSettings: gameInfo.gameSettings,
+            scores: []
+        });
 
         // add socket to an array of connected sockets
         const player = {
@@ -61,9 +68,14 @@ io.on('connection', socket => {
 
         socket.on('start-game', () => io.in(roomNo).emit('start-game'));
 
+
         // send the results of this player to all other players
         socket.on('sendPlayerScore', results => {
-            socket.to(roomNo).emit('getAllScores', results);
+            const q = questions.filter(q => parseInt(q.roomNo) === parseInt(results.roomNumber))[0];
+            const idx = questions.indexOf(q)
+            questions[idx].scores.push(results);
+            socket.emit('getAllScores', [...q.scores ])
+            socket.to(roomNo).emit('getAllScores', [results]);
         });
 
         socket.on('disconnect', socket => {
