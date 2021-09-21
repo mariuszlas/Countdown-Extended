@@ -35,9 +35,20 @@ export const QuizPage = () => {
         }
     }
 
+    function calcScoreIncrement() {
+        switch (difficulty) {
+            case 'easy':
+                return 1
+            case 'medium':
+                return 2
+            case 'hard':
+                return 3
+        }
+    }
+
     function submitAnswer(e) {
         const submission = e.target.value;
-        submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: 1}) : console.log('oops, wrong answer');
+        submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: calcScoreIncrement()}) : console.log('oops, wrong answer');
         setKey(x => ++x);
         setN(x => ++x);
     }
