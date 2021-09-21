@@ -8,6 +8,7 @@ import { cleanString } from "../../actions";
 export const QuizPage = () => {
 
     const questionsArr = useSelector(state => state.questions);
+    const difficulty = useSelector(state => state.gameSettings.difficulty.toLowerCase())
     
     const [key, setKey] = useState(0);
     const [n, setN] = useState(0);
@@ -18,7 +19,20 @@ export const QuizPage = () => {
     const question = questionsArr[Math.min(n, 9)];
 
     const c_answer = question.correct_answer;
-    const i_answers = question.incorrect_answers.slice(0, 3); // shouldn't need the .slice but first question is being weird
+    const i_answers = question.incorrect_answers.slice(0, 3); // shouldn't need the .slice but questions are being weird
+
+    function calcDuration() {
+        switch (difficulty) {
+            case 'easy':
+                return 45
+            case 'medium':
+                return 30
+            case 'hard':
+                return 15
+            default:
+                console.error('Difficulty is missing');
+        }
+    }
     
     function submitAnswer(e) {
         const submission = e.target.value;
@@ -55,7 +69,7 @@ export const QuizPage = () => {
             }}
             key={key}
             isPlaying
-            duration={10}
+            duration={calcDuration()}
             colors={[
             ['#004777', 0.33],
             ['#F7B801', 0.33],
