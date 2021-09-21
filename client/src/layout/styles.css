@@ -4,7 +4,6 @@
     font-family: 'Poppins', sans-serif;
     /* background-color: rgb(170, 230, 245); */
     text-align: center;
-    /* background-image: url(../imgs/background.jpg); */
 }
 
 header {
@@ -31,10 +30,6 @@ footer {
 
 .spacing {
     padding: 40px;
-}
-
-.background{
-    background-image: url(../../public/assets/background.jpg);
 }
 
 form {
