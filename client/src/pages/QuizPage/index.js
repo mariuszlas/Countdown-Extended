@@ -8,8 +8,9 @@ import { cleanString } from "../../actions";
 export const QuizPage = () => {
 
     const questionsArr = useSelector(state => state.questions);
-    const difficulty = useSelector(state => state.gameSettings.difficulty.toLowerCase())
-    
+    const difficulty = useSelector(state => state.gameSettings.difficulty.toLowerCase());
+    const currentScore = useSelector(state => state.players[0].totalScore);
+
     const [key, setKey] = useState(0);
     const [n, setN] = useState(0);
 
@@ -33,7 +34,7 @@ export const QuizPage = () => {
                 console.error('Difficulty is missing');
         }
     }
-    
+
     function submitAnswer(e) {
         const submission = e.target.value;
         submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: 1}) : console.log('oops, wrong answer');
@@ -84,6 +85,7 @@ export const QuizPage = () => {
             <button onClick={submitAnswer} value={ans} key={index}>{cleanString(ans)}</button>
         ))}
 
+        <h3>Score: {currentScore}</h3>
         </>
         )
     } else {
