@@ -2,12 +2,21 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Header, Footer } from './layout';
 import { Home, GameSetup, WaitingRoom, JoinRoom, GameResults, AllResults, QuizPage } from './pages';
+import background from './imgs/backgroundLarger.jpg'
 
 import './index.css';
 
 function App() {
     return (
-        <>
+        <div style={{
+                backgroundImage: `url(${background})`,
+                backgrondSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+            }}>
+            <div style={{
+                height: '100vh',
+            }}>
             <Header />
                 <Switch>
                     <Route exact path="/">
@@ -33,7 +42,8 @@ function App() {
                     </Route>
                 </Switch>
             <Footer />
-        </>
+            </div>
+        </div>
     );
 }
 
