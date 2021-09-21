@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { updateGameSettings, addPlayer, addCurrentPlayer } from '../../redux/actions.js';
+import '../index.css'
 
 function GameSetup() {
 
@@ -51,22 +52,22 @@ function GameSetup() {
 
                 <div id="dropdowns">
                     <label htmlFor="category"></label>
-                    <select id="category" defaultValue="" required>
+                    <select id="category" defaultValue="" className="dropdown" required>
                         <option value="" disabled  hidden>Select Category</option>
                         {categories}
                     </select>
 
                     <label htmlFor="difficulty"></label>
-                    <select id="difficulty" defaultValue="" required>
+                    <select id="difficulty" defaultValue="" className="dropdown" required>
                         <option value="" disabled hidden>Choose Difficulty</option>
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
                     </select>
                 </div>
-
+                <br/>
                 <label htmlFor="submit"></label>
-                <input id="submit" type="submit" value="Join the Waiting Room"/>
+                <input id="submit" type="submit" className="button" value="Join the Waiting Room"/>
             </form>
             </main>
         </>
