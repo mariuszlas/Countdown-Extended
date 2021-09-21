@@ -4,7 +4,8 @@ import {
     UPDATE_GAME_SETTINGS,
     UPDATE_SCORE,
     UPDATE_SOCKET,
-    CURRENT_PLAYER
+    CURRENT_PLAYER,
+    SET_ERROR
 } from './constants';
 
 export const updateSocket = socket => {
@@ -47,3 +48,7 @@ export const updateScore = score => {
 export const addCurrentPlayer = username => {
     return { type: CURRENT_PLAYER, payload: username };
 };
+
+export const setError = err => {
+    return { type: SET_ERROR, payload: err };
+}
