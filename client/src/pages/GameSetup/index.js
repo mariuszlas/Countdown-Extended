@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
@@ -22,7 +23,7 @@ function GameSetup() {
         getCategories();
     }, [])
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
 
         const username = e.target.username.value;
@@ -30,10 +31,27 @@ function GameSetup() {
         const difficulty = e.target.difficulty.value;
         const room = Math.round(Math.random() * 1000000000);
 
+        const isValid = await checkUsername(username);
+
+        if (!isValid) {
+            alert(`'${username}' is already taken. Try another one.`);
+            e.target.username.value = '';
+            return;
+        } 
+
         dispatch(updateGameSettings(category, difficulty));
         dispatch(addPlayer(username, room, true));
         dispatch(addCurrentPlayer(username));
         history.push('/waiting-room')
+    }
+
+    async function checkUsername(username) {
+        try {
+            await axios.post('http://localhost:3000/usernames', { name: username });
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 
     return (
