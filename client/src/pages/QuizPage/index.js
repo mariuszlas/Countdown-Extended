@@ -43,6 +43,8 @@ export const QuizPage = () => {
                 return 2
             case 'hard':
                 return 3
+            default:
+                console.error('Difficulty is missing');
         }
     }
 
