@@ -11,23 +11,19 @@ You can play our app here: *link*
 - Clone this repo 
 - Open it in VSCode
 
-Once cloned, you can replicate the following actions within the terminal and recieve different outcomes: 
+Once cloned, you can run our quiz locally by opening two terminals side by side. 
 
-### Usage
+#### In the First Terminal
 
-#### bash _scripts/startDev.sh
+- Remain in the base directory and run `bash _scripts/startDev.sh`
 
-- starts client, api & db services
-- runs db migrations
-- seeds db for development
-- serves client on localhost:8080
-- serves api on localhost:3000
+#### In the Second Terminal
 
-#### bash _scripts/teardown.sh
+- Navigate to the client folder with `cd client`
+- Run `npm i` to install the npm dependices 
+- Run `npm run dev` when the above have installed
 
-- stop all running services
-- removes containers
-- removes volumes
+You can now navigate to `http://localhost:8080/` and play our quiz game locally!
 
 ## Technologies Used
 
@@ -45,4 +41,9 @@ Once cloned, you can replicate the following actions within the terminal and rec
 
 ### Wins
 
+- Creating a flow throughout the multi-page website
+- Styling with CSS
+- Organisation using Kanban and Miro, but also through Slack calls
+
 ### Challenges
+- 
