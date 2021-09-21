@@ -66,7 +66,7 @@ function GameSetup() {
             </p>
             <form role="game-setup" onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="username"></label>
-                <input type="text" id="username" placeholder='username' required/>
+                <input type="text" id="username" placeholder='username' className="textbox" required/>
 
                 <div id="dropdowns">
                     <label htmlFor="category"></label>
