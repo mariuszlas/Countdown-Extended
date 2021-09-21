@@ -1,6 +1,7 @@
 const { Server } = require('socket.io');
 const express = require('express');
 const http = require('http');
+const { fetchQuestions } = require('./helpers.js');
 
 //--------------- CREATE HTTP SERVER AND MOUNT THE WEBSOCKET -----------//
 const app = express();
@@ -14,68 +15,61 @@ const io = new Server(httpServer, {
 });
 
 let socketsConnected = [];
+let questions = [];
 
 io.on('connection', socket => {
+
     console.log('Websocket connected');
-
-    // get total number of client connections
     const participantCount = io.engine.clientsCount;
-    console.log('clients connected:', participantCount);
 
-    // send event only to the newly connected client
-    socket.emit('welcome-message', 'You are the new client!');
-
-    // send event to all other clients (except the newly connected one)
-    socket.broadcast.emit('welcome-message', `A new client has joined the room`);
-
-    // send event to all clients
-    io.emit(
-        'welcome-message',
-        `There are ${participantCount} clients connected now!`
-    );
-
-    socket.on('add-player', gameInfo => {
+    socket.on('add-player', async gameInfo => {
 
         const roomNo = parseInt(gameInfo.roomNo);
+
+        // const = Array.from(io.sockets.adapter.rooms.get(roomNo)).length;
+        //
+        // if (playersInRoom > 4) {
+        //     socket.emit('entry-denied');
+        //     socket.close();
+        // }
+
+        const questionsData = await fetchQuestions(gameInfo.gameSettings);
+        questions.push({ roomNo: roomNo, questions: questionsData, gameSettings: gameInfo.gameSettings });
 
         // add socket to an array of connected sockets
         const player = {
             socketId: socket.id,
             roomNo: roomNo,
             username: gameInfo.username,
-            host: gameInfo.host,
-            score: 0
+            host: gameInfo.host
         };
         socketsConnected.push(player);
+        console.log('sockets in list', socketsConnected.length);
 
         // join the new room
         socket.join(roomNo);
-
-        console.log('sockets in list', socketsConnected.length);
+        // send the correct questions to the newly joined clinet
+        const roomData = questions.filter(q => parseInt(q.roomNo) === roomNo);
+        socket.emit('questions', roomData[0].questions);
 
         const currentPlayers = socketsConnected.filter(
             socket => parseInt(socket.roomNo) === roomNo && socket.username !== gameInfo.username);
 
-        // send players that are already in the room to the player that has just join in
-        socket.emit('players-in-room', currentPlayers);
+        // send info about players that are already in the room to the player that has just joined in
+        socket.emit('players-in-room', { players: currentPlayers, gameSettings: roomData[0].gameSettings });
         // send info about new player to all other players
         socket.to(roomNo).emit('new-player-in-room', player);
 
-        socket.on('send-questions-to-players', data => {
-            socket.in(roomNo).emit('get-questions', data.questions);
-            io.in(roomNo).emit('start-game');
-        });
+        socket.on('start-game', () => io.in(roomNo).emit('start-game'));
 
         // send the results of this player to all other players
         socket.on('sendPlayerScore', results => {
             socket.to(roomNo).emit('getAllScores', results);
-            console.log('outside');
         });
 
         socket.on('disconnect', socket => {
             // remove socket from the list of sockets connected
-            const socketToRemove = socketsConnected.filter(s => s.id === socket.id);
-            socketsConnected.splice(indexOf(socketToRemove, indexOf(socketToRemove)))
+            // const socketToRemove = socketsConnected.filter(s => s.id === socket.id);
             console.log('Websocket disconnected');
         });
     });

@@ -10,11 +10,17 @@ const persistConfig = {
     storage
 };
 
-const persistedReducer = persistReducer(persistConfig, gameReducer);
+// const persistedReducer = persistReducer(persistConfig, gameReducer);
+// const store = createStore(
+//     persistedReducer,
+//     composeWithDevTools(applyMiddleware(thunk))
+// );
+// const persistor = persistStore(store);
+
 const store = createStore(
-    persistedReducer,
+    gameReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
-const persistor = persistStore(store);
+const persistor = null;
 
 export { store, persistor };
