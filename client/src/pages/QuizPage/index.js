@@ -47,6 +47,7 @@ export const QuizPage = () => {
         <h1>{`Question ${n+1}:`}</h1>
         <h2>{cleanString(question.question)}</h2>
 
+        <div style={{display: 'flex', justifyContent: 'center', paddingBottom: '1vh'}}>
         <CountdownCircleTimer
             onComplete={() => {
                 setKey(x => ++x);
@@ -63,6 +64,7 @@ export const QuizPage = () => {
         >
             {({ remainingTime }) => remainingTime}
         </CountdownCircleTimer>
+        </div>
 
         {answers.map((ans, index) => (
             <button onClick={submitAnswer} value={ans} key={index}>{cleanString(ans)}</button>
