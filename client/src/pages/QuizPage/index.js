@@ -110,7 +110,7 @@ export const QuizPage = () => {
     } else {
         return (
             <>
-            {history.push('/game-results')}
+            {history.replace('/game-results')}
             </>
         )
     }

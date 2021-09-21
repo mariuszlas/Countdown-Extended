@@ -42,7 +42,7 @@ function GameSetup() {
         dispatch(updateGameSettings(category, difficulty));
         dispatch(addPlayer(username, room, true));
         dispatch(addCurrentPlayer(username));
-        history.push('/waiting-room')
+        history.replace('/waiting-room')
     }
 
     async function checkUsername(username) {
