@@ -1,8 +1,8 @@
-import io from 'socket.io-client';
-import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { addPlayer, addCurrentPlayer } from '../../redux/actions.js';
+import { addCurrentPlayer, addPlayer } from '../../redux/actions.js';
 
 const url = 'http://localhost:5001';
 
@@ -11,16 +11,33 @@ function JoinRoom() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
 
         const username = e.target.username.value;
         const roomNo = e.target.roomNo.value;
 
+        const isValid = await checkUsername(username);
+
+        if (!isValid) {
+            alert(`'${username}' is already taken. Try another one.`);
+            e.target.username.value = '';
+            return;
+        } 
+
         dispatch(addPlayer(username, roomNo, false));
         dispatch(addCurrentPlayer(username));
         history.push('/waiting-room');
     }
+
+        async function checkUsername(username) {
+            try {
+                await axios.post('http://localhost:3000/usernames', { name: username });
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
 
     return (
         <>
