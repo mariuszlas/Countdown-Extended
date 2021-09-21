@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { updateSocket, addQuestions, addPlayer } from '../../redux/actions.js';
+import { updateSocket, addQuestions, addPlayer, updateGameSettings } from '../../redux/actions.js';
 
 const url = 'http://localhost:5001';
 
@@ -42,7 +42,8 @@ function WaitingRoom() {
         });
 
         // add players that are already in the room (used only by the non-host clients)
-        socket.on('players-in-room', players => {
+        socket.on('players-in-room', ({ players, gameSettings }) => {
+            dispatch(updateGameSettings(gameSettings.category, gameSettings.difficulty));
             players.forEach(player => {
                 dispatch(addPlayer(player.username, player.roomNo, player.host));
             })
