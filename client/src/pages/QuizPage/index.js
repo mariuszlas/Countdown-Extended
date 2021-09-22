@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
-import { cleanString } from '../../redux/actions.js'
+import { cleanString, firstCharUpperCase } from '../../redux/actions.js'
 
 export const QuizPage = () => {
 
@@ -23,11 +23,7 @@ export const QuizPage = () => {
     const c_answer = question.correct_answer;
     const i_answers = question.incorrect_answers.slice(0, 3); // shouldn't need the .slice but questions are being weird
     
-    let Difficulty = new Array(difficulty.length);
-    for (let i = 0; i < difficulty.length; i++) {
-        Difficulty[i] = difficulty[i];
-    }
-    Difficulty[0] = Difficulty[0].toUpperCase();
+    const Difficulty = firstCharUpperCase(difficulty);
 
     function calcDuration() {
         switch (difficulty) {

@@ -70,3 +70,15 @@ export const cleanString = str => {
         .replaceAll('&shy;', '')
     return cleanStr
 };
+
+export const firstCharUpperCase = (str) => {
+    const l = str.length
+    let Str = new Array(l);
+    for (let i = 0; i < l; i++) {
+        Str[i] = str[i];
+    }
+    
+    Str[0] = Str[0].toUpperCase();
+
+    return Str
+}
