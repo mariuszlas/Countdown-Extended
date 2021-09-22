@@ -39,8 +39,8 @@ function GameSetup() {
             alert(`'${username}' is already taken. Try another one.`);
             e.target.username.value = '';
             return;
-        } 
-        
+        }
+
         dispatch(updateGameSettings(category, difficulty, categoryName));
         dispatch(addPlayer(username, room, true));
         dispatch(addCurrentPlayer(username));
@@ -49,7 +49,7 @@ function GameSetup() {
 
     async function checkUsername(username) {
         try {
-            await axios.post('http://localhost:3000/usernames', { name: username });
+            await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name: username });
             return true;
         } catch (error) {
             return false;
