@@ -32,7 +32,7 @@ function JoinRoom() {
 
         async function checkUsername(username) {
             try {
-                await axios.post('http://localhost:3000/usernames', { name: username });
+                await axios.post('https://countdown-quiz-api.herokuapp.com', { name: username });
                 return true;
             } catch (error) {
                 return false;
