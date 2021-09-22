@@ -52,3 +52,16 @@ export const addCurrentPlayer = username => {
 export const setError = err => {
     return { type: SET_ERROR, payload: err };
 }
+
+export const cleanString = str => {
+    const cleanStr = str
+        .replaceAll('&quot;', '"')
+        .replaceAll('&#039;', "'")
+        .replaceAll('&Eacute;', 'E')
+        .replaceAll('&eacute;', 'e')
+        .replaceAll('&amp;', ' & ')
+        .replaceAll('&Uuml;', 'U')
+        .replaceAll('&pi;', 'pi')
+        .replaceAll('&shy;', '')
+    return cleanStr
+}
