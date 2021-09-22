@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { updatePlayerResults } from '../../redux/actions';
+import { updatePlayerResults, firstCharUpperCase } from '../../redux/actions';
 import { SET_ERROR } from '../../redux/constants';
 import './style.css';
 
@@ -14,7 +14,11 @@ const GameResults = () => {
     const currentPlayer = useSelector(state => state.currentPlayer);
     const roomNumber = useSelector(state => state.roomNumber);
     const results = useSelector(state => state.results)
+    const categoryName = useSelector(state => state.gameSettings.categoryName)
+    const difficulty = useSelector(state => state.gameSettings.difficulty);
+
     const totalScore = players.filter(player => player.username === currentPlayer)[0].totalScore;
+    const Difficulty = firstCharUpperCase(difficulty);
 
     const sendPlayerScore = async () => {
         socket.emit('sendPlayerScore', { username: currentPlayer, totalScore, roomNumber });
@@ -42,6 +46,8 @@ const GameResults = () => {
         <main>
             <h1>{`Congratulations ${currentPlayer}`}</h1>
             <h2>{`Your score is ${totalScore}`}</h2>
+            <h4>Category: {categoryName}</h4>
+            <h4>Difficulty: {Difficulty}</h4>
             <h3>Room Scores</h3>
             <section role="results">
                 {results.map((player, idx) => (
