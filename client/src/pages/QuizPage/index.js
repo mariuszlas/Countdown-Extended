@@ -112,7 +112,7 @@ export const QuizPage = () => {
         </div>
 
         {randAnswers.map((ans, index) => (
-            <button onClick={submitAnswer} value={ans} key={index}>{cleanString(ans)}</button>
+            <button className="button" onClick={submitAnswer} value={ans} key={index}>{cleanString(ans)}</button>
         ))}
 
         <h3>Score: {currentScore}</h3>

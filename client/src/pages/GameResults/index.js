@@ -19,13 +19,13 @@ const GameResults = () => {
 
     const totalScore = players.filter(player => player.username === currentPlayer)[0].totalScore;
     const Difficulty = firstCharUpperCase(difficulty);
-
     const resultsByScore = [...results].sort(compareScore).reverse();
 
     const sendPlayerScore = async () => {
         socket.emit('sendPlayerScore', { username: currentPlayer, totalScore, roomNumber });
 
         try {
+            if (results.some(result => result.username === currentPlayer)) return;
             await axios.post('https://countdown-quiz-api.herokuapp.com/score', { username: currentPlayer, score: totalScore });
         } catch (error) {
             console.error(`Error adding score to server `, error.message);
@@ -72,9 +72,9 @@ const GameResults = () => {
                 ))}
             </section>
             <div className="actions">
-                <Link to="/">Homepage</Link>
-                <Link to="/all-results">View All Scores</Link>
-                <Link to="/answers">View Correct Answers</Link>
+                <Link to="/" className="button">Homepage</Link>
+                <Link to="/all-results" className="button">View All Scores</Link>
+                <Link to="/answers" className="button">View Correct Answers</Link>
             </div>
         </main>
     );
