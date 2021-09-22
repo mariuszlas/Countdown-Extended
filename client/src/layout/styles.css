@@ -5,6 +5,8 @@
     text-align: center;
 }
 
+/* header styles */
+
 header {
     background-color: #ffffff;
     border-radius: 75px;
@@ -21,6 +23,8 @@ header {
 .logo:hover {
     cursor: pointer;
 }
+
+/* footer styles */
 
 footer {
     font-size: smaller;

@@ -24,6 +24,10 @@ p[role=room] {
     padding: 10px;
 }
 
+h5 {
+    font-weight:normal;
+}
+
 /* text boxes */
 
 #username, #roomNo {
