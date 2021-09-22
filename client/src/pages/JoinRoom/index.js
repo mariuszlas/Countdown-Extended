@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { addCurrentPlayer, addPlayer } from '../../redux/actions.js';
 
-const url = 'http://localhost:3000';
+const url = 'https://countdown-quiz-api.herokuapp.com';
 
 function JoinRoom() {
 
