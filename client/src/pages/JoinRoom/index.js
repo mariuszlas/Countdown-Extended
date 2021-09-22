@@ -49,10 +49,10 @@ function JoinRoom() {
             <form role="game-setup" onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="username"></label>
                 <input type="text" id="username" placeholder='username' required/>
-
+                <br/>
                 <label htmlFor="roomNo"></label>
                 <input type="text" id="roomNo" placeholder='room number' required/>
-
+                <br/>
                 <label htmlFor="submit"></label>
                 <input id="submit" type="submit" value="Join the Waiting Room"/>
             </form>

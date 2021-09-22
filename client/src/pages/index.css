@@ -13,7 +13,7 @@ p[role=game-instructions] {
     padding: 50px;
 }
 
-.textbox {
+#username, #roomNo {
     font-size: large;
     border-radius: 20px;
     border-style: solid;
@@ -22,7 +22,7 @@ p[role=game-instructions] {
     margin: 20px 0px; 
 }
 
-#username:hover {
+#username:hover, #roomNo:hover {
     box-shadow:5px 5px 5px rgba(255, 255, 255, 0.562); 
 }
 
@@ -32,17 +32,18 @@ p[role=game-instructions] {
     border-radius: 20px;
     background-color: white;
     padding: 15px 25px;
+    cursor: pointer;
 }
 
-.button {
+.button, #submit {
     border-radius: 20px;
     border-style: none;
     background-color: #ffffff;
     font-size: larger;
-    padding: 15px 25px;
+    padding: 13px 20px;
     cursor: pointer;
 }
 
-.button:hover {
+.button:hover, #submit:hover {
     background-color: #ffffffa9;
 }
