@@ -86,10 +86,9 @@ export const QuizPage = () => {
         return (
         <>
         
-        <h2 style={{display: "inline", float: "left"}}>Category: {categoryName}</h2>
-        <h2 style={{display: "inline", float: "right"}}>Difficulty: {Difficulty}</h2>
+        <h4>Category: {categoryName}</h4>
+        <h4>Difficulty: {Difficulty}</h4>
         
-        {/* This does not display correctly, don't know how to fix. <look into later> */}
         <h1>{`Question ${n+1}:`}</h1>
         <h2>{cleanString(question.question)}</h2>
 
