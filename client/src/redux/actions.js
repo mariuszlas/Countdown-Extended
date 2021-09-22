@@ -68,6 +68,10 @@ export const cleanString = str => {
         .replaceAll('&Uuml;', 'U')
         .replaceAll('&pi;', 'pi')
         .replaceAll('&shy;', '')
+        .replaceAll('&divide;', '/')
+        .replaceAll('&ntilde;', 'n')
+        .replaceAll('&Aacute;', 'A')
+        .replaceAll('&aacute;', 'a')
     return cleanStr
 };
 
