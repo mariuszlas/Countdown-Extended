@@ -26,6 +26,7 @@ const GameResults = () => {
         socket.emit('sendPlayerScore', { username: currentPlayer, totalScore, roomNumber });
 
         try {
+            if (results.some(result => result.username === currentPlayer)) return;
             await axios.post('https://countdown-quiz-api.herokuapp.com/score', { username: currentPlayer, score: totalScore });
         } catch (error) {
             console.error(`Error adding score to server `, error.message);
