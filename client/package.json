@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest --watch --setupFilesAfterEnv ./src/test/setupTests.js",
+        "test": "jest --watch --setupFilesAfterEnv ./src/test/setupTest.js",
         "dev": "webpack-cli serve --mode development --config config/webpack.config.dev.js",
         "build": "webpack --config config/webpack.config.production.js",
         "coverage": "jest --setupFilesAfterEnv ./src/test/setupTests.js --coverage --watchAll=false"
@@ -20,7 +20,7 @@
         ],
         "testEnvironment": "jsdom"
     },
-    "author": "Mariusz Las, Jasmine Appleby Holdham, Tobi Kuyoro & Gorazd Sumkovski",
+    "author": "Mariusz Las, Jasmin Appleby Holdham, Tobi Kuyoro & Gorazd Sumkovski",
     "license": "MIT",
     "devDependencies": {
         "@babel/core": "^7.15.5",

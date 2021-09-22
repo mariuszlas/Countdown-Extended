@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
-import { cleanString } from "../../actions";
+import { cleanString } from '../../redux/actions.js'
 
 export const QuizPage = () => {
 
@@ -60,15 +60,19 @@ export const QuizPage = () => {
     }
 
     function randQuestionDist() {
-        const randIdx = Math.floor(4 * Math.random());
         let arr = i_answers;
 
-        arr.splice(randIdx, 0, c_answer);
+        arr.splice(0, 0, c_answer);
+
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor((i+1) * Math.random());
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
 
         return arr
     }
 
-    const answers = randQuestionDist();
+    const randAnswers = randQuestionDist();
 
 
     if (n <= 9) {
@@ -100,7 +104,7 @@ export const QuizPage = () => {
         </CountdownCircleTimer>
         </div>
 
-        {answers.map((ans, index) => (
+        {randAnswers.map((ans, index) => (
             <button onClick={submitAnswer} value={ans} key={index}>{cleanString(ans)}</button>
         ))}
 
