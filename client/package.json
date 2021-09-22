@@ -20,7 +20,7 @@
         ],
         "testEnvironment": "jsdom"
     },
-    "author": "Mariusz Las, Jasmine Appleby Holdham, Tobi Kuyoro & Gorazd Sumkovski",
+    "author": "Mariusz Las, Jasmin Appleby Holdham, Tobi Kuyoro & Gorazd Sumkovski",
     "license": "MIT",
     "devDependencies": {
         "@babel/core": "^7.15.5",
