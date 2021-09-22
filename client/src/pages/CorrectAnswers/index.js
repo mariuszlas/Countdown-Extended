@@ -17,9 +17,10 @@ const CorrectAnswers = () => {
             <h4>Difficulty: {Difficulty}</h4>
             {questions.map(q => (
                 <div key={q.question}>
-                    <h5>{cleanString(q.question)}</h5>
-                    <p style={{display: 'inline', paddingRight: '1vw'}}>Correct: {cleanString(q.correct_answer)}</p>
-                    <p style={{display: 'inline', paddingRight: '1vw'}}>Incorrect: {cleanString(q.incorrect_answers.join(', '))}</p>
+                    <br/>
+                    <h3>{cleanString(q.question)}</h3>
+                    <p style={{display: 'inline', paddingRight: '1vw', color: 'green'}}>Correct: {cleanString(q.correct_answer)}</p>
+                    <p style={{display: 'inline', paddingRight: '1vw', color: 'red'}}>Incorrect: {cleanString(q.incorrect_answers.join(', '))}</p>
                     <p style={{display: 'inline'}}>Submission: {submissions[questions.indexOf(q)]}</p>
                 </div>
             ))}

@@ -19,7 +19,6 @@ const GameResults = () => {
 
     const totalScore = players.filter(player => player.username === currentPlayer)[0].totalScore;
     const Difficulty = firstCharUpperCase(difficulty);
-
     const resultsByScore = [...results].sort(compareScore).reverse();
 
     const sendPlayerScore = async () => {
@@ -73,9 +72,9 @@ const GameResults = () => {
                 ))}
             </section>
             <div className="actions">
-                <Link to="/">Homepage</Link>
-                <Link to="/all-results">View All Scores</Link>
-                <Link to="/answers">View Correct Answers</Link>
+                <Link to="/" className="button">Homepage</Link>
+                <Link to="/all-results" className="button">View All Scores</Link>
+                <Link to="/answers" className="button">View Correct Answers</Link>
             </div>
         </main>
     );

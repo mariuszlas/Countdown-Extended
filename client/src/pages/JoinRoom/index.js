@@ -45,14 +45,16 @@ function JoinRoom() {
             {/*Home button*/}
         </nav>
         <main>
-            <p role="game-instructions">To join the waiting room, enter the room number and your username</p>
+            <section>
+            <p role="game-instructions">To join your friends waiting room, enter your username and the room number!</p>
+            </section>
             <form role="game-setup" onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="username"></label>
                 <input type="text" id="username" placeholder='username' required/>
-
+                <br/>
                 <label htmlFor="roomNo"></label>
                 <input type="text" id="roomNo" placeholder='room number' required/>
-
+                <br/>
                 <label htmlFor="submit"></label>
                 <input id="submit" type="submit" value="Join the Waiting Room"/>
             </form>
