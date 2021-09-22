@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../index.css'
 
 function Home() {
-
+    console.log(process.env.API_URL);
     //redirect to the game setup page
     function newGame(e) {
         e.preventDefault();
@@ -20,7 +20,7 @@ function Home() {
     }
 
     return (
-        <>                  
+        <>
         <div className="spacing">
                 <form onSubmit={newGame}>
                     <button type="submit" className="button">Start a New Game!</button>
