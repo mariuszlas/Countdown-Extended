@@ -67,16 +67,15 @@ function WaitingRoom() {
             { error
                 ? <p role="alert">{error}</p>
                 : <div>
-                    <p role="instructions">Share the room number with your friends so
-                        that they can answer the same set of questions at the same time
-                    </p>
-                    <p>The room number is: {roomNo}</p>
-                    <p>Players in room:</p>
+                    <p role="instructions">Share the room number with your friends so they can join this game!</p>
+                    <p role="instructions">You can have a maximum of four players in total.</p>
+                    <p role="room">The room number is: {roomNo}</p>
+                    <p role="room">Players in room:</p>
                     <div>{renderPlayers()}</div>
 
                     { host ?
-                        <button onClick={startGame}>Start Game</button>
-                        : <p>Wait until the host starts the quiz</p>
+                        <button onClick={startGame} className="button">Start Game</button>
+                        : <p role="room">Wait until the host starts the quiz</p>
                     }
                 </div>
         }

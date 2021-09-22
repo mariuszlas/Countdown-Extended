@@ -9,9 +9,13 @@ section {
     padding: 20px;
 }
 
-p[role=game-instructions] {
+p[role=game-instructions], p[role=instructions], p[role=room] {
     font-size: large;
     margin: 0; 
+}
+
+p[role=room] {
+    padding: 10px;
 }
 
 .spacing {
