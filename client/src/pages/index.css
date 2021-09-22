@@ -71,6 +71,15 @@ h5 {
     background-color: #ffffffa9;
 }
 
+.link {
+    display: inline-block;
+    color: #000;
+}
+
+.button.link {
+    margin: 15px auto;
+}
+
 .action {
     justify-content: 'space-between';
 }
