@@ -30,20 +30,16 @@ function JoinRoom() {
         history.push('/waiting-room');
     }
 
-        async function checkUsername(username) {
-            try {
-                await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name: username });
-                return true;
-            } catch (error) {
-                return false;
-            }
+    async function checkUsername(username) {
+        try {
+            await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name: username });
+            return true;
+        } catch (error) {
+            return false;
         }
+    }
 
     return (
-        <>
-        <nav>
-            {/*Home button*/}
-        </nav>
         <main>
             <section>
             <p role="game-instructions">To join your friends waiting room, enter your username and the room number!</p>
@@ -58,8 +54,7 @@ function JoinRoom() {
                 <label htmlFor="submit"></label>
                 <input id="submit" type="submit" value="Join the Waiting Room"/>
             </form>
-            </main>
-        </>
+        </main>
     );
 }
 
