@@ -1,8 +1,8 @@
 # Countdown
 
-Countdown is a quiz app created by @mariuszlas , @jasminappleby , @Gorazd-Sumkovski and @tobikuyo 
+Countdown is a quiz app created by @mariuszlas , @jasminappleby , @Gorazd-Sumkovski and @tobikuyo
 
-You can play our app here: *link*
+You can play our app here: [(https://countdown-quizzz.netlify.app/)]
 
 ## Installation & Usage
 
