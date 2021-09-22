@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+p[role=game-instructions] {
+    font-size: large;
+}
+
+.spacing {
+    padding: 50px;
+}
+
+.textbox {
+    font-size: large;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #ffffff;
+    padding: 10px;
+    margin: 20px 0px; 
+}
+
+#username:hover {
+    box-shadow:5px 5px 5px rgba(255, 255, 255, 0.562); 
+}
+
+.dropdown {
+    border-color: #7e7e7e;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: white;
+    padding: 15px 25px;
+}
+
+.button {
+    border-radius: 20px;
+    border-style: none;
+    background-color: #ffffff;
+    font-size: larger;
+    padding: 15px 25px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #ffffffa9;
+}

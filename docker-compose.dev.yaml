@@ -1,0 +1,27 @@
+services:
+    api:
+        container_name: countdown_dev_api
+        ports:
+            - 3000:3000
+        environment:
+            - PGUSER=quizz_team
+            - PGHOST=db
+            - PGPASSWORD=countdownpass
+            - PGDATABASE=quizz_db
+            - PGPORT=5432
+            - NODE_ENV=development
+        depends_on:
+            - db
+        command: bash -c "npm install && npm run dev"
+
+    db:
+        container_name: countdown_dev_db
+        volumes:
+            - 'dbdata:/var/lib/postgresql/data'
+        environment:
+            - POSTGRES_DB=quizz_db
+            - POSTGRES_USER=quizz_team
+            - POSTGRES_PASSWORD=countdownpass
+
+volumes:
+    dbdata:
