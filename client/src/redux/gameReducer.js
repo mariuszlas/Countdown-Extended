@@ -63,7 +63,8 @@ const gameReducer = (state = initialState, action) => {
                 )
             };
         case UPDATE_RESULTS:
-            return { ...state, results: [...state.results, ...action.payload] };
+            const updatedResults = [...state.results, ...action.payload]
+            return { ...state, results: [...new Set(updatedResults)]  };
         default:
             return state;
     }
