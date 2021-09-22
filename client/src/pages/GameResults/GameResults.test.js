@@ -33,7 +33,6 @@ describe('GameResults', () => {
 
     it('renders users scores', () => {
         const results = screen.getByRole('results');
-        console.log(results);
         expect(results.children.length).toBe(2);
     });
 

@@ -38,7 +38,7 @@ const AllResults = () => {
     return (
         <>
         <h1 className="spacing">Scoreboard</h1>
-        <table>
+        <table role="all-results">
             <thead>
                 <tr>
                     <th>Username</th>
