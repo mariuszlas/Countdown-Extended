@@ -7,7 +7,7 @@
         "test": "jest --watch --setupFilesAfterEnv ./src/test/setupTest.js",
         "dev": "webpack-cli serve --mode development --config config/webpack.config.dev.js",
         "build": "webpack --config config/webpack.config.production.js",
-        "coverage": "jest --setupFilesAfterEnv ./src/test/setupTests.js --coverage --watchAll=false"
+        "coverage": "jest --setupFilesAfterEnv ./src/test/setupTest.js --coverage --watchAll"
     },
     "jest": {
         "moduleNameMapper": {
