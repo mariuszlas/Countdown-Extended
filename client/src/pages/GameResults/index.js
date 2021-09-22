@@ -58,9 +58,9 @@ const GameResults = () => {
                 ))}
             </section>
             <div className="actions">
-                <Link to="/">Homepage</Link>
-                <Link to="/all-results">View All Scores</Link>
-                <Link to="/answers">View Correct Answers</Link>
+                <Link to="/" className="button">Homepage</Link>
+                <Link to="/all-results" className="button">View All Scores</Link>
+                <Link to="/answers" className="button">View Correct Answers</Link>
             </div>
         </main>
     );

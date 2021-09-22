@@ -51,7 +51,14 @@ p[role=room] {
     font-size: larger;
     padding: 13px 20px;
     cursor: pointer;
+    text-decoration: none;
+    margin: 5px;
 }
+
+.action {
+    justify-content: 'space-between';
+}
+
 
 .button:hover, #submit:hover {
     background-color: #ffffffa9;
