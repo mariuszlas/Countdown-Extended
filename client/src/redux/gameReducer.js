@@ -6,7 +6,8 @@ import {
     UPDATE_GAME_SETTINGS,
     UPDATE_SCORE,
     UPDATE_SOCKET,
-    RESET_SCORE
+    RESET_SCORE,
+    UPDATE_RESULTS
 } from './constants';
 
 /**
@@ -21,7 +22,8 @@ const initialState = {
     gameSettings: {},
     questions: [],
     currentPlayer: '',
-    error: null
+    error: null,
+    results: []
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -60,6 +62,9 @@ const gameReducer = (state = initialState, action) => {
                         : player
                 )
             };
+        case UPDATE_RESULTS:
+            const updatedResults = [...state.results, ...action.payload]
+            return { ...state, results: [...new Set(updatedResults)]  };
         default:
             return state;
     }

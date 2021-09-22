@@ -1,11 +1,12 @@
 import {
     ADD_PLAYER,
     ADD_QUESTIONS,
-    UPDATE_GAME_SETTINGS,
-    UPDATE_SCORE,
-    UPDATE_SOCKET,
     CURRENT_PLAYER,
-    SET_ERROR
+    SET_ERROR,
+    UPDATE_GAME_SETTINGS,
+    UPDATE_RESULTS,
+    UPDATE_SCORE,
+    UPDATE_SOCKET
 } from './constants';
 
 export const updateSocket = socket => {
@@ -51,7 +52,11 @@ export const addCurrentPlayer = username => {
 
 export const setError = err => {
     return { type: SET_ERROR, payload: err };
-}
+};
+
+export const updatePlayerResults = scores => {
+    return { type: UPDATE_RESULTS, payload: scores };
+};
 
 export const cleanString = str => {
     const cleanStr = str
@@ -64,4 +69,4 @@ export const cleanString = str => {
         .replaceAll('&pi;', 'pi')
         .replaceAll('&shy;', '')
     return cleanStr
-}
+};

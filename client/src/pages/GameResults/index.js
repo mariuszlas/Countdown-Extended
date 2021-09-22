@@ -1,19 +1,19 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { updatePlayerResults } from '../../redux/actions';
 import { SET_ERROR } from '../../redux/constants';
 import './style.css';
 
 const GameResults = () => {
-
-    const [scoreList, setScoreList] = useState([])
     const dispatch = useDispatch();
 
     const socket = useSelector(state => state.socket);
     const players = useSelector(state => state.players);
     const currentPlayer = useSelector(state => state.currentPlayer);
     const roomNumber = useSelector(state => state.roomNumber);
+    const results = useSelector(state => state.results)
     const totalScore = players.filter(player => player.username === currentPlayer)[0].totalScore;
 
     const sendPlayerScore = async () => {
@@ -29,7 +29,7 @@ const GameResults = () => {
 
     const getRoomScores = () => {
         socket.on('getAllScores', scores => {
-            setScoreList(previousScores => [...previousScores, ...scores]);
+            dispatch(updatePlayerResults(scores))
         });
     };
 
@@ -44,7 +44,7 @@ const GameResults = () => {
             <h2>{`Your score is ${totalScore}`}</h2>
             <h3>Room Scores</h3>
             <section role="results">
-                {scoreList.map((player, idx) => (
+                {results.map((player, idx) => (
                     <p className="user-results" key={idx}>
                         <span>{player.username}</span>
                         <span>{player.totalScore}</span>
