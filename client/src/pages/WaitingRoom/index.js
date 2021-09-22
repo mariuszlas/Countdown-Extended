@@ -75,7 +75,7 @@ function WaitingRoom() {
 
                     { host ?
                         <button onClick={startGame} className="button">Start Game</button>
-                        : <p role="room">Wait until the host starts the quiz</p>
+                        : <p role="guest-instructions">Wait until the host starts the quiz</p>
                     }
                 </div>
         }
