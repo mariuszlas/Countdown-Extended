@@ -20,6 +20,8 @@ const GameResults = () => {
     const totalScore = players.filter(player => player.username === currentPlayer)[0].totalScore;
     const Difficulty = firstCharUpperCase(difficulty);
 
+    const resultsByScore = [...results].sort(compareScore).reverse();
+
     const sendPlayerScore = async () => {
         socket.emit('sendPlayerScore', { username: currentPlayer, totalScore, roomNumber });
 
@@ -37,6 +39,18 @@ const GameResults = () => {
         });
     };
 
+    function compareScore(a, b) {
+        let comparison = 0;
+
+        if (a.totalScore > b.totalScore) {
+            comparison = 1;
+        } else if (a.totalScore < b.totalScore) {
+            comparison = -1;
+        }
+
+        return comparison;
+    }
+
     useEffect(() => {
         sendPlayerScore();
         getRoomScores();
@@ -50,7 +64,7 @@ const GameResults = () => {
             <h4>Difficulty: {Difficulty}</h4>
             <h3>Room Scores</h3>
             <section role="results">
-                {results.map((player, idx) => (
+                {resultsByScore.map((player, idx) => (
                     <p className="user-results" key={idx}>
                         <span>{player.username}</span>
                         <span>{player.totalScore}</span>
