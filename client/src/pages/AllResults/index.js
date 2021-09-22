@@ -23,8 +23,6 @@ const AllResults = () => {
         getScores();
     }, []);
 
-    console.log('playersByScore ', allScores);
-
     function compareScore(a, b) {
         let comparison = 0;
 
