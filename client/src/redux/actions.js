@@ -28,8 +28,8 @@ export const addPlayer = (username, room, host) => {
     return { type: ADD_PLAYER, payload: { room, player } };
 };
 
-export const updateGameSettings = (category, difficulty) => {
-    return { type: UPDATE_GAME_SETTINGS, payload: { category, difficulty } };
+export const updateGameSettings = (category, difficulty, categoryName) => {
+    return { type: UPDATE_GAME_SETTINGS, payload: { category, difficulty, categoryName } };
 };
 
 /**

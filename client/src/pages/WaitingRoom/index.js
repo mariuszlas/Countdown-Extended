@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { updateSocket, addQuestions, addPlayer, updateGameSettings, setError } from '../../redux/actions.js';
 
-const url = 'http://localhost:5001';
+const url = 'http://localhost:3000';
 
 function WaitingRoom() {
 
@@ -44,7 +44,7 @@ function WaitingRoom() {
 
         // add players that are already in the room (used only by the non-host clients)
         socket.on('players-in-room', ({ players, gameSettings }) => {
-            dispatch(updateGameSettings(gameSettings.category, gameSettings.difficulty));
+            dispatch(updateGameSettings(gameSettings.category, gameSettings.difficulty, gameSettings.categoryName));
             players.forEach(player => {
                 dispatch(addPlayer(player.username, player.roomNo, player.host));
             })

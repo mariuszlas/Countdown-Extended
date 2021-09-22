@@ -12,7 +12,7 @@ import {
 
 /**
  * @property players - array of 'player' objects with `username`, `host` and `totalScore` properties.
- * @property gameSettings - object with `difficulty` and `category` properties.
+ * @property gameSettings - object with `difficulty`, `category` and `categoryName` properties.
  * @property questions - array of questions as modeled in the Open Trivia API, with the addition of a `isCorrect` property.
  */
 const initialState = {
@@ -63,7 +63,8 @@ const gameReducer = (state = initialState, action) => {
                 )
             };
         case UPDATE_RESULTS:
-            return { ...state, results: [...state.results, ...action.payload] };
+            const updatedResults = [...state.results, ...action.payload]
+            return { ...state, results: [...new Set(updatedResults)]  };
         default:
             return state;
     }
