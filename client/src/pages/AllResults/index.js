@@ -12,7 +12,7 @@ const AllResults = () => {
     useEffect(() => {
         const getScores = async () => {
             try {
-                const { data } = await axios.get('http://localhost:3000/score');
+                const { data } = await axios.get('https://countdown-quiz-api.herokuapp.com/score');
                 setAllScores(data);
             } catch (error) {
                 console.error(`Error getting scores from server `, error.message);
