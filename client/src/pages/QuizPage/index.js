@@ -57,8 +57,8 @@ export const QuizPage = () => {
 
     function submitAnswer(e) {
         const submission = e.target.value;
+        dispatch({type: 'UPDATE_SUBMISSIONS', payload: submission});
         submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: calcScoreIncrement()}) : console.log('oops, wrong answer');
-        console.log(categoryName);
         setKey(x => ++x);
         setN(x => ++x);
     }

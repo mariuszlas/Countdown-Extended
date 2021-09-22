@@ -7,7 +7,8 @@ import {
     UPDATE_SCORE,
     UPDATE_SOCKET,
     RESET_SCORE,
-    UPDATE_RESULTS
+    UPDATE_RESULTS,
+    UPDATE_SUBMISSIONS
 } from './constants';
 
 /**
@@ -21,6 +22,7 @@ const initialState = {
     roomNumber: null,
     gameSettings: {},
     questions: [],
+    submissions: [],
     currentPlayer: '',
     error: null,
     results: []
@@ -46,13 +48,15 @@ const gameReducer = (state = initialState, action) => {
             return { ...state, error: action.payload };
         case RESET_SCORE:
             return {
-                ...state,
+                ...state, submissions: [],
                 players: state.players.map(player =>
                     player.username === state.currentPlayer
                         ? { ...player, totalScore: (player.totalScore = action.payload) }
                         : player
                 )
             };
+        case UPDATE_SUBMISSIONS:
+            return {...state, submissions: [...state.submissions, action.payload]}
         case UPDATE_SCORE:
             return {
                 ...state,
