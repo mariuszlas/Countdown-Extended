@@ -70,7 +70,7 @@ io.on('connection', socket => {
 
 
         // send the results of this player to all other players
-        socket.on('sendPlayerScore', results => {
+        socket.once('sendPlayerScore', results => {
             const q = questions.filter(q => parseInt(q.roomNo) === parseInt(results.roomNumber))[0];
             const idx = questions.indexOf(q)
             questions[idx].scores.push(results);
