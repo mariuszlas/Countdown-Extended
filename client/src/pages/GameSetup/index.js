@@ -64,7 +64,8 @@ function GameSetup() {
                 <p role="game-instructions">The quiz is composed of 10 questions.</p>
                 <p role="game-instructions">You can select the topic and difficulty of the questions below. </p>
                 <p role="game-instructions">Each question has four different answers, only one of them is correct. </p>
-                <p role="game-instructions">You will have 15 seconds to answers each question.</p>
+                <p role="game-instructions">You will have 15 seconds to answer each question.</p>
+                <p role="game-instructions">Score Multipliers: Medium Difficulty = Score x2, Hard Difficulty = Score x3</p>
             </section>
             <form role="game-setup" onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="username"></label>
