@@ -58,14 +58,14 @@ function GameSetup() {
 
     return (
         <>
-        <nav>
-            {/*Home button*/}
-        </nav>
         <main>
-            <p role="game-instructions">The quiz is composed of 10 questions. You can select the topic
-                and difficulty of the questions below. Each question has four different answers,
-                only one of them is correct. You will have 15 seconds to answers each question.
-            </p>
+            <section>
+                <h1>Game Instructions</h1>
+                <p role="game-instructions">The quiz is composed of 10 questions.</p>
+                <p role="game-instructions">You can select the topic and difficulty of the questions below. </p>
+                <p role="game-instructions">Each question has four different answers, only one of them is correct. </p>
+                <p role="game-instructions">You will have 15 seconds to answers each question.</p>
+            </section>
             <form role="game-setup" onSubmit={e => handleSubmit(e)}>
                 <label htmlFor="username"></label>
                 <input type="text" id="username" placeholder='username' className="textbox" required/>
