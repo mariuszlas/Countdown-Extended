@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { updateSocket, addQuestions, addPlayer, updateGameSettings, setError } from '../../redux/actions.js';
 
-const url = 'http://localhost:5001';
+const url = 'http://localhost:3000';
 
 function WaitingRoom() {
 

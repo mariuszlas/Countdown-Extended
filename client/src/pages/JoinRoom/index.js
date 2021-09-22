@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { addCurrentPlayer, addPlayer } from '../../redux/actions.js';
 
-const url = 'http://localhost:5001';
+const url = 'http://localhost:3000';
 
 function JoinRoom() {
 
@@ -23,7 +23,7 @@ function JoinRoom() {
             alert(`'${username}' is already taken. Try another one.`);
             e.target.username.value = '';
             return;
-        } 
+        }
 
         dispatch(addPlayer(username, roomNo, false));
         dispatch(addCurrentPlayer(username));
