@@ -38,6 +38,8 @@ const AllResults = () => {
     }
 
     return (
+        <>
+        <h1 className="spacing">Scoreboard</h1>
         <table>
             <thead>
                 <tr>
@@ -54,6 +56,7 @@ const AllResults = () => {
                 ))}
             </tbody>
         </table>
+        </>
     );
 };
 

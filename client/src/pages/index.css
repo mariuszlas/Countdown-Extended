@@ -5,7 +5,13 @@
     text-align: center;
 }
 
+/* text related */
+
 section {
+    padding: 20px;
+}
+
+.spacing {
     padding: 20px;
 }
 
@@ -18,9 +24,7 @@ p[role=room] {
     padding: 10px;
 }
 
-.spacing {
-    padding: 50px;
-}
+/* text boxes */
 
 #username, #roomNo {
     font-size: large;
@@ -35,6 +39,8 @@ p[role=room] {
     border-color: #7e7e7e;
 }
 
+/* dropdown menus */
+
 .dropdown {
     border-color: #7e7e7e;
     border-style: solid;
@@ -43,6 +49,8 @@ p[role=room] {
     padding: 15px 25px;
     cursor: pointer;
 }
+
+/* buttons and links */
 
 .button, #submit {
     border-radius: 20px;
@@ -55,11 +63,34 @@ p[role=room] {
     margin: 5px;
 }
 
+.button:hover, #submit:hover {
+    background-color: #ffffffa9;
+}
+
 .action {
     justify-content: 'space-between';
 }
 
+/* tables */
 
-.button:hover, #submit:hover {
-    background-color: #ffffffa9;
+table {
+    margin: 0 auto;
+    text-align: center;
+    width: 30%;  
+    border: 1px solid black;
+    border-collapse: collapse;  
 }
+
+tr td {
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+    font-size: large;
+    border: 1px solid black;
+}
+
+th {
+    border: 1px solid black;
+    font-size: x-large;
+}
+
