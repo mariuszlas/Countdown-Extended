@@ -80,5 +80,5 @@ export const firstCharUpperCase = (str) => {
     
     Str[0] = Str[0].toUpperCase();
 
-    return Str
+    return Str.join('')
 }
