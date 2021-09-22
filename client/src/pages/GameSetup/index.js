@@ -60,6 +60,7 @@ function GameSetup() {
         <>
         <main>
             <section>
+                <h1>Game Instructions</h1>
                 <p role="game-instructions">The quiz is composed of 10 questions.</p>
                 <p role="game-instructions">You can select the topic and difficulty of the questions below. </p>
                 <p role="game-instructions">Each question has four different answers, only one of them is correct. </p>
