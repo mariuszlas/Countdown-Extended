@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
-import { cleanString } from "../../actions";
+import { cleanString } from '../../redux/actions.js'
 
 export const QuizPage = () => {
 

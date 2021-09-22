@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { cleanString } from '../../actions';
+import { cleanString } from '../../redux/actions.js';
 
 const CorrectAnswers = () => {
     const questions = useSelector(state => state.questions);
