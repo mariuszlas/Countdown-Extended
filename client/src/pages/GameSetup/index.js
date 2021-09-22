@@ -29,6 +29,8 @@ function GameSetup() {
         const username = e.target.username.value;
         const category = e.target.category.value;
         const difficulty = e.target.difficulty.value;
+
+        const categoryName = categories.filter(cat => cat.key === category)[0].props.children
         const room = Math.round(Math.random() * 1000000000);
 
         const isValid = await checkUsername(username);
@@ -38,8 +40,8 @@ function GameSetup() {
             e.target.username.value = '';
             return;
         } 
-
-        dispatch(updateGameSettings(category, difficulty));
+        
+        dispatch(updateGameSettings(category, difficulty, categoryName));
         dispatch(addPlayer(username, room, true));
         dispatch(addCurrentPlayer(username));
         history.replace('/waiting-room')

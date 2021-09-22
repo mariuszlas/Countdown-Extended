@@ -44,7 +44,7 @@ function WaitingRoom() {
 
         // add players that are already in the room (used only by the non-host clients)
         socket.on('players-in-room', ({ players, gameSettings }) => {
-            dispatch(updateGameSettings(gameSettings.category, gameSettings.difficulty));
+            dispatch(updateGameSettings(gameSettings.category, gameSettings.difficulty, gameSettings.categoryName));
             players.forEach(player => {
                 dispatch(addPlayer(player.username, player.roomNo, player.host));
             })

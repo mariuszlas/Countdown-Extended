@@ -8,6 +8,7 @@ import { cleanString } from '../../redux/actions.js'
 export const QuizPage = () => {
 
     const questionsArr = useSelector(state => state.questions);
+    const categoryName = useSelector(state => state.gameSettings.categoryName)
     const difficulty = useSelector(state => state.gameSettings.difficulty.toLowerCase());
     const currentScore = useSelector(state => state.players[0].totalScore);
 
@@ -18,9 +19,15 @@ export const QuizPage = () => {
     const history = useHistory();
 
     const question = questionsArr[Math.min(n, 9)];
-
+    
     const c_answer = question.correct_answer;
     const i_answers = question.incorrect_answers.slice(0, 3); // shouldn't need the .slice but questions are being weird
+    
+    let Difficulty = new Array(difficulty.length);
+    for (let i = 0; i < difficulty.length; i++) {
+        Difficulty[i] = difficulty[i];
+    }
+    Difficulty[0] = Difficulty[0].toUpperCase();
 
     function calcDuration() {
         switch (difficulty) {
@@ -55,6 +62,7 @@ export const QuizPage = () => {
     function submitAnswer(e) {
         const submission = e.target.value;
         submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: calcScoreIncrement()}) : console.log('oops, wrong answer');
+        console.log(categoryName);
         setKey(x => ++x);
         setN(x => ++x);
     }
@@ -82,6 +90,10 @@ export const QuizPage = () => {
         return (
         <>
         
+        <h2 style={{display: "inline", float: "left"}}>Category: {categoryName}</h2>
+        <h2 style={{display: "inline", float: "right"}}>Difficulty: {Difficulty}</h2>
+        
+        {/* This does not display correctly, don't know how to fix. <look into later> */}
         <h1>{`Question ${n+1}:`}</h1>
         <h2>{cleanString(question.question)}</h2>
 
