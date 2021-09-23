@@ -15,6 +15,10 @@ section {
     padding: 20px;
 }
 
+.actions {
+    padding: 50px
+}
+
 p[role=game-instructions], p[role=instructions], p[role=room] {
     font-size: large;
     margin: 0; 
@@ -64,7 +68,8 @@ h5 {
     padding: 13px 20px;
     cursor: pointer;
     text-decoration: none;
-    margin: 5px;
+    margin: 10px;
+
 }
 
 .button:hover, #submit:hover {
