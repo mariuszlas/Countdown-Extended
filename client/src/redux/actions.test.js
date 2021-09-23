@@ -33,4 +33,10 @@ describe('redux actions', () => {
 
         expect(store.getActions()).toEqual([{ type: 'CURRENT_PLAYER', payload: 'testCurrentPlayer' }]);
     })
+
+    test('setError action', () => {
+        store.dispatch(setError('testError'));
+
+        expect(store.getActions()).toEqual([{ type: 'SET_ERROR', payload: 'testError' }]);
+    })
 })
