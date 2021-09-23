@@ -53,4 +53,10 @@ describe('gameReducer', () => {
 
         expect(fakeState).toEqual({error: 'testError'});
     })
+
+    test('RESET_SCORE', () => {
+        const fakeState = gameReducer({ currentPlayer: 'player', submissions: ['asdf'], players: [{username: 'otherPlayer', totalScore: 5}, {username: 'player', totalScore: 9}] }, {type: 'RESET_SCORE', payload: 0});
+
+        expect(fakeState).toEqual({currentPlayer: 'player', submissions: [], players: [{username: 'otherPlayer', totalScore: 5}, {username: 'player', totalScore: 0}]});
+    })
 })
