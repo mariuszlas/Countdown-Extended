@@ -93,4 +93,4 @@ io.on('connection', socket => {
     });
 });
 
-module.exports = httpServer;
+module.exports = { httpServer, io };
