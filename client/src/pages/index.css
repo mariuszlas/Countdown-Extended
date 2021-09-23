@@ -5,26 +5,45 @@
     text-align: center;
 }
 
-p[role=game-instructions] {
-    font-size: large;
+/* text related */
+
+section {
+    padding: 20px;
 }
 
 .spacing {
-    padding: 50px;
+    padding: 20px;
 }
 
-.textbox {
+p[role=game-instructions], p[role=instructions], p[role=room] {
+    font-size: large;
+    margin: 0; 
+}
+
+p[role=room] {
+    padding: 10px;
+}
+
+h5 {
+    font-weight:normal;
+}
+
+/* text boxes */
+
+#username, #roomNo {
     font-size: large;
     border-radius: 20px;
     border-style: solid;
     border-color: #ffffff;
     padding: 10px;
-    margin: 20px 0px; 
+    margin: 10px 0px; 
 }
 
-#username:hover {
-    box-shadow:5px 5px 5px rgba(255, 255, 255, 0.562); 
+#username:hover, #roomNo:hover, #username.active {
+    border-color: #7e7e7e;
 }
+
+/* dropdown menus */
 
 .dropdown {
     border-color: #7e7e7e;
@@ -32,17 +51,59 @@ p[role=game-instructions] {
     border-radius: 20px;
     background-color: white;
     padding: 15px 25px;
+    cursor: pointer;
 }
 
-.button {
+/* buttons and links */
+
+.button, #submit {
     border-radius: 20px;
     border-style: none;
     background-color: #ffffff;
     font-size: larger;
-    padding: 15px 25px;
+    padding: 13px 20px;
     cursor: pointer;
+    text-decoration: none;
+    margin: 5px;
 }
 
-.button:hover {
+.button:hover, #submit:hover {
     background-color: #ffffffa9;
 }
+
+.link {
+    display: inline-block;
+    color: #000;
+}
+
+.button.link {
+    margin: 15px auto;
+}
+
+.action {
+    justify-content: 'space-between';
+}
+
+/* tables */
+
+table {
+    margin: 0 auto;
+    text-align: center;
+    width: 30%;  
+    border: 1px solid black;
+    border-collapse: collapse;  
+}
+
+tr td {
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+    font-size: large;
+    border: 1px solid black;
+}
+
+th {
+    border: 1px solid black;
+    font-size: x-large;
+}
+

@@ -5,7 +5,7 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 import { cleanString, firstCharUpperCase } from '../../redux/actions.js'
 
-export const QuizPage = () => {
+export const QuizPage = ({ test }) => {
 
     const questionsArr = useSelector(state => state.questions);
     const categoryName = useSelector(state => state.gameSettings.categoryName)
@@ -93,26 +93,28 @@ export const QuizPage = () => {
         <h2>{cleanString(question.question)}</h2>
 
         <div style={{display: 'flex', justifyContent: 'center', paddingBottom: '1vh'}}>
-        <CountdownCircleTimer
-            onComplete={() => {
-                setKey(x => ++x);
-                setN(x => ++x);
-            }}
-            key={key}
-            isPlaying
-            duration={calcDuration()}
-            colors={[
-            ['#004777', 0.33],
-            ['#F7B801', 0.33],
-            ['#A30000', 0.33],
-            ]}
-        >
-            {({ remainingTime }) => remainingTime}
-        </CountdownCircleTimer>
+       { !test && 
+            <CountdownCircleTimer
+                    onComplete={() => {
+                        setKey(x => ++x);
+                        setN(x => ++x);
+                    }}
+                    key={key}
+                    isPlaying
+                    duration={calcDuration()}
+                    colors={[
+                    ['#004777', 0.33],
+                    ['#F7B801', 0.33],
+                    ['#A30000', 0.33],
+                    ]}
+                >
+                    {({ remainingTime }) => remainingTime}
+                </CountdownCircleTimer>
+        }
         </div>
 
         {randAnswers.map((ans, index) => (
-            <button onClick={submitAnswer} value={ans} key={index}>{cleanString(ans)}</button>
+            <button className="button" onClick={submitAnswer} value={ans} key={index}>{cleanString(ans)}</button>
         ))}
 
         <h3>Score: {currentScore}</h3>

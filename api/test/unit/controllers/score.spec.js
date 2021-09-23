@@ -2,7 +2,7 @@ const controller = require('../../../controllers/score.js');
 const Score = require('../../../models/Score.js');
 
 const mockJson = jest.fn();
-const mockStatus = jest.fn(code => ({ send: jest.fn(), json: mockJson }));
+const mockStatus = jest.fn(() => ({ send: jest.fn(), json: mockJson }));
 const mockResponse = { status: mockStatus };
 
 describe('scores controller', () => {
@@ -20,6 +20,18 @@ describe('scores controller', () => {
             expect(mockStatus).toHaveBeenCalledWith(200);
             expect(mockJson).toHaveBeenCalledWith(mockScores);
         });
+
+        test('returns error with a 500 status code upon failure', async () => {
+            try {
+                jest.spyOn(Score, 'all', 'get').mockRejectedValueOnce('index error test');
+                await controller.index(null, mockResponse);
+            } catch (err) {
+
+            }
+
+            expect(mockStatus).toHaveBeenCalledWith(500);
+            expect(mockJson).toHaveBeenCalledWith({err: 'index error test'});
+        })
     });
 
     describe('create', () => {
@@ -31,5 +43,20 @@ describe('scores controller', () => {
             expect(mockStatus).toHaveBeenCalledWith(201);
             expect(mockJson).toHaveBeenCalledWith(testObj);
         });
+
+        test('returns error with a 422 status code upon failure', async () => {
+            const testObj = { username: 'test_username_1', score: 50 };
+            const mockRequest = { body: testObj };
+
+            try {
+                jest.spyOn(Score, 'create').mockRejectedValueOnce('create error test');
+                await controller.create(mockRequest, mockResponse);
+            } catch (err) {
+
+            }
+
+            expect(mockStatus).toHaveBeenCalledWith(422);
+            expect(mockJson).toHaveBeenCalledWith({err: 'create error test'});
+        })
     });
 })

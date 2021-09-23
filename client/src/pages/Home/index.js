@@ -1,38 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import '../index.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../index.css';
 
 function Home() {
-
-    //redirect to the game setup page
-    function newGame(e) {
-        e.preventDefault();
-        document.location = '/game-setup';
-    }
-
-    function joinGame(e) {
-        e.preventDefault();
-        document.location = '/join-room';
-    }
-
-    function leaderBoards(e) {
-        e.preventDefault();
-        document.location = '/all-results';
-    }
-
     return (
-        <>                  
-        <div className="spacing">
-                <form onSubmit={newGame}>
-                    <button type="submit" className="button">Start a New Game!</button>
-                </form>
-                <br/>
-                <form onSubmit={joinGame}>
-                    <button type="submit" className="button">Join a Game!</button>
-                </form>
-                <br/>
-                <form onSubmit={leaderBoards}>
-                    <button type="submit" className="button">Check the Leaderboards!</button>
-                </form>
+        <>
+            <div className="spacing">
+                <Link to="/game-setup" className="button link">
+                    Start a New Game!
+                </Link>
+                <br />
+                <Link to="/join-room" className="button link">
+                    Join a Game!
+                </Link>
+                <br />
+                <Link to="/all-results" className="button link">
+                    Check the Leaderboards!
+                </Link>
             </div>
         </>
     );

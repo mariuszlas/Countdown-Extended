@@ -5,6 +5,8 @@
     text-align: center;
 }
 
+/* header styles */
+
 header {
     background-color: #ffffff;
     border-radius: 75px;
@@ -22,12 +24,18 @@ header {
     cursor: pointer;
 }
 
+/* footer styles */
+
 footer {
     font-size: smaller;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 30px;
+    position: relative;
+    bottom:0px;
+    width:100%;
+}
+
+hr {
+    border: 1px solid rgba(133, 133, 255, 0.753);
+    width:50%;
+    margin:0 auto;
 }
 
