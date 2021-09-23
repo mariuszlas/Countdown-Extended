@@ -13,9 +13,8 @@ function GameSetup() {
 
     useEffect(() => {
         async function getCategories() {
-            const result = await fetch('https://opentdb.com/api_category.php');
-            const categories = await result.json();
-            const options = categories.trivia_categories.map(
+            const { data } = await axios.get('https://opentdb.com/api_category.php');
+            const options = data.trivia_categories.map(
                 category => <option key={category.id} value={category.id}>{category.name}</option>
             );
             setCategories(options);
