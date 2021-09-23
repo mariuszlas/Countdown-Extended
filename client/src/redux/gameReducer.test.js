@@ -17,4 +17,10 @@ describe('gameReducer', () => {
             results: []
         })
     })
+
+    test('UPDATE_SOCKET', () => {
+        const fakeState = gameReducer({socket: null}, {type: 'UPDATE_SOCKET', payload: 'testSocketObj'});
+
+        expect(fakeState).toEqual({socket: 'testSocketObj'});
+    })
 })
