@@ -71,4 +71,10 @@ describe('gameReducer', () => {
 
         expect(fakeState).toEqual({currentPlayer: 'thePlayer', players: [{username: 'differentPlayer', totalScore: 99}, {username: 'thePlayer', totalScore: 70}]});
     })
+
+    test('UPDATE_RESULTS', () => {
+        const fakeState = gameReducer({results: ['a', 'a', 'a', 'b']}, {type: 'UPDATE_RESULTS', payload: ['b', 'c']});
+
+        expect(fakeState).toEqual({results: ['a', 'b', 'c']});
+    })
 })
