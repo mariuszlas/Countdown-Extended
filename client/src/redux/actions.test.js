@@ -2,7 +2,7 @@ import axios from "axios";
 import thunk from "redux-thunk";
 import configureMockStore from "redux-mock-store";
 
-import { addPlayer, updateGameSettings, addQuestions, updateScore, addCurrentPlayer, setError, updatePlayerResults, calcDuration, calcScoreIncrement, checkUsername } from "./actions";
+import { addPlayer, updateGameSettings, addQuestions, updateScore, addCurrentPlayer, setError, updatePlayerResults, calcDuration, calcScoreIncrement, checkUsername, checkForDuplicateUsernames } from "./actions";
 
 jest.mock('axios');
 
@@ -77,6 +77,23 @@ describe('redux actions', () => {
         for (let i = 0; i < difficulties.length; i++) {
             expect(calcScoreIncrement(difficulties[i])).toEqual(increments[i]);
         }
+    })
+
+    describe('checkForDuplicateUsernames', () => {
+
+        test('returns false on unsuccessful api post', async () => {
+            let isNotDuplicate;
+            
+            jest.spyOn(axios, 'post').mockRejectedValue();
+            
+            try {
+                isNotDuplicate = await checkForDuplicateUsernames()();
+            } catch (err) {
+                
+            }
+    
+            expect(isNotDuplicate).toEqual(false);
+        })
     })
 
     
