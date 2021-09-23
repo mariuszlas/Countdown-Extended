@@ -60,18 +60,18 @@ export const updatePlayerResults = scores => {
 
 export const cleanString = str => {
     const cleanStr = str
-        .replaceAll('&quot;', '"')
-        .replaceAll('&#039;', "'")
-        .replaceAll('&Eacute;', 'E')
-        .replaceAll('&eacute;', 'e')
-        .replaceAll('&amp;', ' & ')
-        .replaceAll('&Uuml;', 'U')
-        .replaceAll('&pi;', 'pi')
-        .replaceAll('&shy;', '')
-        .replaceAll('&divide;', '/')
-        .replaceAll('&ntilde;', 'n')
-        .replaceAll('&Aacute;', 'A')
-        .replaceAll('&aacute;', 'a')
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'")
+        .replace(/&Eacute;/g, 'E')
+        .replace(/&eacute;/g, 'e')
+        .replace(/&amp;/g, ' & ')
+        .replace(/&Uuml;/g, 'U')
+        .replace(/&pi;/g, 'pi')
+        .replace(/&shy;/g, '')
+        .replace(/&divide;/g, '/')
+        .replace(/&ntilde;/g, 'n')
+        .replace(/&Aacute;/g, 'A')
+        .replace(/&aacute;/g, 'a')
     return cleanStr
 };
 

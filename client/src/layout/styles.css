@@ -29,9 +29,13 @@ header {
 footer {
     font-size: smaller;
     position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 30px;
+    bottom:0px;
+    width:100%;
+}
+
+hr {
+    border: 1px solid rgba(133, 133, 255, 0.753);
+    width:50%;
+    margin:0 auto;
 }
 
