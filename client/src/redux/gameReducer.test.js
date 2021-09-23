@@ -29,4 +29,10 @@ describe('gameReducer', () => {
 
         expect(fakeState).toEqual({players: ['testPlayer'], roomNumber: 44});
     })
+
+    test('UPDATE_GAME_SETTINGS', () => {
+        const fakeState = gameReducer({ gameSettings: {} }, { type: 'UPDATE_GAME_SETTINGS', payload: {difficulty: 'Hard', category: 88, categoryName: 'cats'} });
+
+        expect(fakeState).toEqual( {gameSettings: {difficulty: 'Hard', category: 88, categoryName: 'cats'} });
+    })
 })
