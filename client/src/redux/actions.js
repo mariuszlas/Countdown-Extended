@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
     ADD_PLAYER,
     ADD_QUESTIONS,
@@ -37,7 +38,6 @@ export const updateGameSettings = (category, difficulty, categoryName) => {
  * @param {string} category
  * @param {string} difficulty
  */
-
 export const addQuestions = questions => {
     return { type: ADD_QUESTIONS, payload: questions };
 };
@@ -72,8 +72,6 @@ export const cleanString = str => {
         .replace(/&ntilde;/g, 'n')
         .replace(/&Aacute;/g, 'A')
         .replace(/&aacute;/g, 'a')
-        .replace(/&Egrave;/g, 'E')
-        .replace(/&egrave;/g, 'e')
     return cleanStr
 };
 
@@ -83,10 +81,31 @@ export const firstCharUpperCase = (str) => {
     for (let i = 0; i < l; i++) {
         Str[i] = str[i];
     }
-
+    
     Str[0] = Str[0].toUpperCase();
 
     return Str.join('')
+}
+
+export const checkForDuplicateUsernames = (name, category, difficulty, categoryName, room) => async dispatch  => {
+    try {
+        await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name });
+        dispatch(updateGameSettings(category, difficulty, categoryName));
+        dispatch(addPlayer(name, room, true));
+        dispatch(addCurrentPlayer(name));
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
+
+export async function checkUsername(username) {
+    try {
+        await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name: username });
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
 export function calcDuration(difficulty) {
@@ -112,14 +131,5 @@ export function calcScoreIncrement(difficulty) {
             return 3
         default:
             console.error('Difficulty is missing');
-    }
-}
-
-export async function checkUsername(username) {
-    try {
-        await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name: username });
-        return true;
-    } catch (error) {
-        return false;
     }
 }
