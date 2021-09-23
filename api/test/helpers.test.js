@@ -1,8 +1,5 @@
 const axios = require('axios');
-
 const { fetchQuestions } = require('../ws/helpers.js');
-
-jest.mock('axios');
 
 describe('fetchQuestions', () => {
 
@@ -10,25 +7,18 @@ describe('fetchQuestions', () => {
 
     afterAll(() => jest.resetAllMocks());
 
-    test('returns the questions on successful api query', async () => {
-        const testData = {category: 'cat', difficulty: 'diff'};
-
+    it('returns the questions on successful api query', async () => {
+        const testData = { category: 'cat', difficulty: 'diff' };
         jest.spyOn(axios, 'get').mockResolvedValue({ data: { results: [{}, {}, {}] } } );
-        // axios.get.mockResolvedValue({ data: { results: [{}, {}, {}] } });
-
         const questions = await fetchQuestions(testData);
 
-        console.log(questions);
-
-        expect(axios.get).toHaveBeenCalled();
-        expect(questions).toHaveLength(4);
+        expect(axios.get).toHaveBeenCalledTimes(1);
+        expect(questions).toHaveLength(3);
     })
 
-    test('returns error upon unsuccessful api query', async () => {
-        const testData = {category: 'cat', difficulty: 'diff'};
-
+    it('returns error upon unsuccessful api query', async () => {
+        const testData = { category: 'cat', difficulty: 'diff' };
         jest.spyOn(axios, 'get').mockRejectedValue('Error fetching the questions');
-        // axios.get.mockRejectedValue('Error fetching the questions');
 
         try {
             await fetchQuestions(testData);
@@ -36,6 +26,6 @@ describe('fetchQuestions', () => {
             expect(err).toEqual('Error fetching the questionss');
         }
 
-        expect(axios.get).toHaveBeenCalled();
+        expect(axios.get).toHaveBeenCalledTimes(1);
     })
 })

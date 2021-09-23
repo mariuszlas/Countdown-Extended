@@ -29,7 +29,7 @@ function updatePlayers(socket, roomNo, gameInfo) {
     return player;
 };
 
-function sendQuestions(socket, roomData, roomNo) {
+function sendQuestions(socket, roomData) {
     // send the correct questions to the player that has just joined the room
     const questions = roomData[0].questions;
     socket.emit('questions', questions);

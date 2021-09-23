@@ -1,7 +1,7 @@
 const request = require('supertest');
 const fs = require('fs');
 const { Pool } = require('pg');
-const app = require('../../server.js');
+const { httpServer } = require('../../server.js');
 
 const testSeed = fs.readFileSync(__dirname + '/test_seeds.sql').toString();
 
@@ -18,6 +18,6 @@ function restTestDB() {
 }
 
 global.request = request;
-global.app = app;
+global.httpServer = httpServer;
 global.restTestDB = restTestDB;
 global.port = process.env.PORT || 5000;

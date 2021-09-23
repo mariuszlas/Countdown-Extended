@@ -46,7 +46,7 @@ io.on('connection', socket => {
             players.push(player);
 
             sendPlayers(socket, roomData, players, roomNo, gameInfo);
-            sendQuestions(socket, roomData, roomNo);
+            sendQuestions(socket, roomData);
         }
 
         socket.on('start-game', () => io.in(roomNo).emit('start-game'));

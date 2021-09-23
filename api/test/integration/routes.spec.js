@@ -2,7 +2,7 @@ describe('scores endpoints', () => {
     let api;
 
     beforeAll(async () => {
-        api = app. listen(5000, () => console.log('Test api running on port 5000'))
+        api = httpServer.listen(5000, () => console.log('Test api running on port 5000'))
     });
 
     beforeEach(async () => {
