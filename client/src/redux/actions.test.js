@@ -39,4 +39,10 @@ describe('redux actions', () => {
 
         expect(store.getActions()).toEqual([{ type: 'SET_ERROR', payload: 'testError' }]);
     })
+
+    test('updatePlayerResults action', () => {
+        store.dispatch(updatePlayerResults([2, 5, 6]));
+
+        expect(store.getActions()).toEqual([{ type: 'UPDATE_RESULTS', payload: [2, 5, 6] }]);
+    })
 })
