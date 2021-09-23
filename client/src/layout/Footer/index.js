@@ -3,10 +3,13 @@ import '../styles.css'
 
 const Footer = () => {
     return (
-        <footer style={{position: 'absolute', bottom: '0px', width: '99%'}}>
+        <>
+        <div style={{flexGrow: -1}}></div>
+        <footer>
             <hr />
             <p role="footer">Created by Mariusz, Gorazd, Tobi and Jasmin</p>
         </footer>
+        </>
     );
 }
 
