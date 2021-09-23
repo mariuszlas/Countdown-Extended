@@ -45,4 +45,13 @@ describe('redux actions', () => {
 
         expect(store.getActions()).toEqual([{ type: 'UPDATE_RESULTS', payload: [2, 5, 6] }]);
     })
+
+    test('calcDuration', () => {
+        const difficulties = ['easy', 'medium', 'hard', 'missing'];
+        const durations = [45, 30, 15, Error('Difficulty is missing')];
+
+        for (let i = 0; i < difficulties.length; i++) {
+            expect(calcDuration(difficulties[i])).toEqual(durations[i]);
+        }
+    })
 })
