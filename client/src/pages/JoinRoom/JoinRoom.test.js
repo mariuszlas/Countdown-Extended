@@ -1,10 +1,6 @@
 import { default as JoinRoom } from '.';
 import { screen } from '@testing-library/react';
 
-// jest.mock('../../redux/actions.js');
-// jest.spyOn(actions, 'checkUsername').mockReturnValue(true)
-// checkUsername = jest.fn();
-
 describe('JoinRoom', () => {
     it('renders game instructions', () => {
         renderWithReduxAndRouter(<JoinRoom />);
