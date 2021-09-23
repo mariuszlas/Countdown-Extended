@@ -99,6 +99,7 @@ export function calcDuration(difficulty) {
             return 15
         default:
             console.error('Difficulty is missing');
+            return
     }
 }
 
@@ -112,5 +113,6 @@ export function calcScoreIncrement(difficulty) {
             return 3
         default:
             console.error('Difficulty is missing');
+            return
     }
 }
