@@ -59,4 +59,10 @@ describe('gameReducer', () => {
 
         expect(fakeState).toEqual({currentPlayer: 'player', submissions: [], players: [{username: 'otherPlayer', totalScore: 5}, {username: 'player', totalScore: 0}]});
     })
+
+    test('UPDATE_SUBMISSIONS', () => {
+        const fakeState = gameReducer({submissions: ['firstSub', 'secondSub']}, {type: 'UPDATE_SUBMISSIONS', payload: 'thirdSub'});
+
+        expect(fakeState).toEqual({submissions: ['firstSub', 'secondSub', 'thirdSub']});
+    })
 })
