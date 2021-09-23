@@ -23,4 +23,10 @@ describe('gameReducer', () => {
 
         expect(fakeState).toEqual({socket: 'testSocketObj'});
     })
+
+    test('ADD_PLAYER', () => {
+        const fakeState = gameReducer({players: [], roomNumber: null}, { type: 'ADD_PLAYER', payload: {player: 'testPlayer', room: 44} });
+
+        expect(fakeState).toEqual({players: ['testPlayer'], roomNumber: 44});
+    })
 })
