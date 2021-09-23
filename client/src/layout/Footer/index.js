@@ -4,6 +4,7 @@ import '../styles.css'
 const Footer = () => {
     return (
         <footer>
+            <br/>
             <hr />
             <p role="footer">Created by Mariusz, Gorazd, Tobi and Jasmin</p>
         </footer>
