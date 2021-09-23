@@ -54,4 +54,13 @@ describe('redux actions', () => {
             expect(calcDuration(difficulties[i])).toEqual(durations[i]);
         }
     })
+
+    test('calcScoreIncrement', () => {
+        const difficulties = ['easy', 'medium', 'hard', 'missing'];
+        const increments = [1, 2, 3, Error('Difficulty is missing')];
+
+        for (let i = 0; i < difficulties.length; i++) {
+            expect(calcScoreIncrement(difficulties[i])).toEqual(increments[i]);
+        }
+    })
 })
