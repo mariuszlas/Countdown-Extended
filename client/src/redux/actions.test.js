@@ -27,4 +27,10 @@ describe('redux actions', () => {
 
         expect(store.getActions()).toEqual([{ type: 'UPDATE_SCORE', payload: 55 }]);
     })
+
+    test('addCurrentPlayer action', () => {
+        store.dispatch(addCurrentPlayer('testCurrentPlayer'));
+
+        expect(store.getActions()).toEqual([{ type: 'CURRENT_PLAYER', payload: 'testCurrentPlayer' }]);
+    })
 })
