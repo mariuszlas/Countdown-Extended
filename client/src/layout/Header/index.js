@@ -1,17 +1,14 @@
 import React from 'react';
 import Logo from '../../imgs/logo.png';
-
+import { useHistory } from 'react-router-dom'
 import '../styles.css'
 
-function redirect(e) {
-    e.preventDefault();
-    document.location = '/';
-}
-
 const Header = () => {
+    const history = useHistory();
+    
     return (
         <header>
-            <img src={Logo} className="logo" alt="our logo" onClick={redirect}/>
+            <img src={Logo} className="logo" alt="our logo" onClick={() => history.push('/')}/>
         </header>
     );
 }

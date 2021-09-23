@@ -3,6 +3,7 @@
 * {
     font-family: 'Poppins', sans-serif;
     text-align: center;
+    box-sizing: border-box;
 }
 
 /* text related */
@@ -21,7 +22,7 @@ section {
 
 p[role=game-instructions], p[role=instructions], p[role=room] {
     font-size: large;
-    margin: 0; 
+    margin: 0;
 }
 
 p[role=room] {
@@ -32,6 +33,10 @@ h5 {
     font-weight:normal;
 }
 
+#room-no {
+    font-weight: bolder;
+}
+
 /* text boxes */
 
 #username, #roomNo {
@@ -40,7 +45,7 @@ h5 {
     border-style: solid;
     border-color: #ffffff;
     padding: 10px;
-    margin: 10px 0px; 
+    margin: 10px 0px;
 }
 
 #username:hover, #roomNo:hover, #username.active {
@@ -94,9 +99,9 @@ h5 {
 table {
     margin: 0 auto;
     text-align: center;
-    width: 30%;  
+    width: 30%;
     border: 1px solid black;
-    border-collapse: collapse;  
+    border-collapse: collapse;
 }
 
 tr td {
@@ -112,3 +117,26 @@ th {
     font-size: x-large;
 }
 
+/* lists of users and results */
+
+.p-username {
+    margin: 1.25em 0 1.25em 0;
+}
+
+.p-username > span {
+    background-color: #ffffffa9;
+    padding: 0.5em 1.5em 0.5em 1.5em;
+    border-radius: 20px;
+}
+
+.user-results {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+    background-color: #ffffffa9;
+    padding: 0.5em 1.5em 0.5em 1.5em;
+    border-radius: 20px;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}

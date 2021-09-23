@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
     ADD_PLAYER,
     ADD_QUESTIONS,
@@ -37,7 +38,6 @@ export const updateGameSettings = (category, difficulty, categoryName) => {
  * @param {string} category
  * @param {string} difficulty
  */
-
 export const addQuestions = questions => {
     return { type: ADD_QUESTIONS, payload: questions };
 };
@@ -64,6 +64,8 @@ export const cleanString = str => {
         .replace(/&#039;/g, "'")
         .replace(/&Eacute;/g, 'E')
         .replace(/&eacute;/g, 'e')
+        .replace(/&Egrave;/g, 'E')
+        .replace(/&egrave;/g, 'e')
         .replace(/&amp;/g, ' & ')
         .replace(/&Uuml;/g, 'U')
         .replace(/&pi;/g, 'pi')
@@ -72,8 +74,6 @@ export const cleanString = str => {
         .replace(/&ntilde;/g, 'n')
         .replace(/&Aacute;/g, 'A')
         .replace(/&aacute;/g, 'a')
-        .replace(/&Egrave;/g, 'E')
-        .replace(/&egrave;/g, 'e')
     return cleanStr
 };
 
@@ -89,6 +89,22 @@ export const firstCharUpperCase = (str) => {
     return Str.join('')
 }
 
+export const checkForDuplicateUsernames = (name, room, isHost, category = null, difficulty = null, categoryName = null) => async dispatch  => {
+    try {
+        await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name });
+
+        dispatch(addPlayer(name, room, isHost));
+        dispatch(addCurrentPlayer(name));
+        
+        // When this function gets called in the 'JoinRoom' page, the 'category', 'difficulty' and 'categoryName' 
+        // would have already been set, so we don't want to dispatch the below function again.
+        if (category) dispatch(updateGameSettings(category, difficulty, categoryName));
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
+
 export function calcDuration(difficulty) {
     switch (difficulty) {
         case 'easy':
@@ -99,6 +115,7 @@ export function calcDuration(difficulty) {
             return 15
         default:
             console.error('Difficulty is missing');
+            return new Error('Difficulty is missing')
     }
 }
 
@@ -112,5 +129,6 @@ export function calcScoreIncrement(difficulty) {
             return 3
         default:
             console.error('Difficulty is missing');
+            return new Error('Difficulty is missing')
     }
 }

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { updateSocket, addQuestions, addPlayer, updateGameSettings, setError } from '../../redux/actions.js';
 
-const url = 'https://countdown-quiz-api.herokuapp.com';
 
 function WaitingRoom() {
 
@@ -33,7 +32,11 @@ function WaitingRoom() {
 
         socket.on('entry-denied', err => dispatch(setError(err)));
 
-        socket.on('questions', questions => dispatch(addQuestions(questions)));
+        socket.on('questions', questions => {
+            questions.length === 0
+            ? dispatch(setError('There are no questions available for this category and difficulty. Try different ones'))
+            : dispatch(addQuestions(questions));
+        });
 
         // add the player that has just joined the room
         socket.on('new-player-in-room', player => {
@@ -59,7 +62,7 @@ function WaitingRoom() {
     }
 
     const renderPlayers = () => players.map(
-        (player, idx) => <p className="p-username" key={idx}>{player.username}</p>);
+        (player, idx) => <p className="p-username" key={idx}><span>{player.username}</span></p>);
 
     return (
         <main>
@@ -69,7 +72,7 @@ function WaitingRoom() {
                 : <div>
                     <p role="instructions">Share the room number with your friends so they can join this game!</p>
                     <p role="instructions">You can have a maximum of four players in total.</p>
-                    <p role="room">The room number is: {roomNo}</p>
+                    <p role="room">The room number is: <span id="room-no">{roomNo}</span></p>
                     <p role="room">Players in room:</p>
                     <div>{renderPlayers()}</div>
 

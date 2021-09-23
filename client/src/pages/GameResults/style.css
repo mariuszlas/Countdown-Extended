@@ -4,13 +4,6 @@ section {
     align-items: center;
 }
 
-.user-results {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 400px;
-}
-
 .divider {
     min-height: 1px;
     padding: 25px;
