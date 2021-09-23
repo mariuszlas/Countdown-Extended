@@ -83,7 +83,7 @@ export const firstCharUpperCase = (str) => {
     for (let i = 0; i < l; i++) {
         Str[i] = str[i];
     }
-    
+
     Str[0] = Str[0].toUpperCase();
 
     return Str.join('')
@@ -112,5 +112,14 @@ export function calcScoreIncrement(difficulty) {
             return 3
         default:
             console.error('Difficulty is missing');
+    }
+}
+
+export async function checkUsername(username) {
+    try {
+        await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name: username });
+        return true;
+    } catch (error) {
+        return false;
     }
 }
