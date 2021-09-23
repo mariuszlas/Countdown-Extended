@@ -15,12 +15,13 @@
             "/node_modules/"
         ]
     },
-    "author": "Mariusz Las, Jasmine Appleby Holdham, Tobi Kuyoro & Gorazd Sumkovski",
+    "author": "Mariusz Las, Jasmin Appleby Holdham, Tobi Kuyoro & Gorazd Sumkovski",
     "license": "MIT",
     "devDependencies": {
         "jest": "^27.2.0",
         "nodemon": "^2.0.12",
-        "supertest": "^6.1.6"
+        "supertest": "^6.1.6",
+        "socket.io-client": "^4.2.0"
     },
     "dependencies": {
         "axios": "^0.21.4",
