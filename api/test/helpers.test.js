@@ -23,4 +23,19 @@ describe('fetchQuestions', () => {
         expect(axios.get).toHaveBeenCalled();
         expect(questions).toHaveLength(4);
     })
+
+    test('returns error upon unsuccessful api query', async () => {
+        const testData = {category: 'cat', difficulty: 'diff'};
+        
+        jest.spyOn(axios, 'get').mockRejectedValue('Error fetching the questions');
+        // axios.get.mockRejectedValue('Error fetching the questions');
+        
+        try {
+            await fetchQuestions(testData);
+        } catch (err) {
+            expect(err).toEqual('Error fetching the questionss');
+        }
+
+        expect(axios.get).toHaveBeenCalled();
+    })
 })
