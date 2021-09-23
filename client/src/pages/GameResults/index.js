@@ -73,7 +73,9 @@ const GameResults = () => {
             </section>
             <div className="actions">
                 <Link to="/" className="button">Homepage</Link>
+                <div className="divider"/>
                 <Link to="/all-results" className="button">View All Scores</Link>
+                <div className="divider"/>
                 <Link to="/answers" className="button">View Correct Answers</Link>
             </div>
         </main>

@@ -21,7 +21,7 @@ const CorrectAnswers = () => {
                     <h3>{cleanString(q.question)}</h3>
                     <p style={{display: 'inline', paddingRight: '1vw', color: 'green'}}>Correct: {cleanString(q.correct_answer)}</p>
                     <p style={{display: 'inline', paddingRight: '1vw', color: 'red'}}>Incorrect: {cleanString(q.incorrect_answers.join(', '))}</p>
-                    <p style={{display: 'inline'}}>Submission: {submissions[questions.indexOf(q)]}</p>
+                    <p style={{display: 'inline'}}>Submission: {cleanString(submissions[questions.indexOf(q)])}</p>
                 </div>
             ))}
         </>
