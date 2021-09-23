@@ -15,7 +15,7 @@ describe('GameSetup', () => {
         }
     };
 
-    beforeEach(() => jest.resetAllMocks());
+    beforeEach(() =>  jest.resetAllMocks());
 
     it('should display game instructions', () => {
         renderWithReduxAndRouter(<GameSetup />);
@@ -25,25 +25,39 @@ describe('GameSetup', () => {
         expect(instructions).toHaveLength(5);
     });
 
+    it('should fetch the categories from axios successfully', async () => {
+        axios.get.mockResolvedValue(mockResponse);
+        renderWithReduxAndRouter(<GameSetup />);
+        expect(axios.get).toHaveBeenCalledWith(expect.stringMatching(/api_category/));
+    
+        const generalCategory = await screen.findByRole('option', { name: 'General Knowledge' });
+        expect(generalCategory).toBeInTheDocument();
+    });
+
     it('should register the right information and options', async () => {
         axios.get.mockResolvedValue(mockResponse);
         renderWithReduxAndRouter(<GameSetup />);
         expect(axios.get).toHaveBeenCalledWith(expect.stringMatching(/api_category/));
 
+        // Wait for API call to be resolved, before doing anything else
         const generalCategory = await screen.findByRole('option', { name: 'General Knowledge' });
 
         const usernameInput = screen.getByRole('textbox');
         const category = screen.getAllByRole('combobox')[0];
         const difficulty = screen.getAllByRole('combobox')[1];
+        const easyOption = screen.getByRole('option', { name: 'Easy' });
 
+        // Fill the username and select preferred options
         userEvent.type(usernameInput, 'testUser');
         userEvent.selectOptions(category, '9');
         userEvent.selectOptions(difficulty, 'easy');
 
-        const easyOption = screen.getByRole('option', { name: 'Easy' });
-
         expect(usernameInput.value).toBe('testUser');
         expect(generalCategory.selected).toBe(true);
         expect(easyOption.selected).toBe(true);
+
+        // Click the 'Join the Waiting Room' button
+        const  joinButton = screen.getByRole('button', { name: /Join/})
+        userEvent.click(joinButton)
     });
 });
