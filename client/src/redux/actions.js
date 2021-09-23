@@ -38,7 +38,6 @@ export const updateGameSettings = (category, difficulty, categoryName) => {
  * @param {string} category
  * @param {string} difficulty
  */
-
 export const addQuestions = questions => {
     return { type: ADD_QUESTIONS, payload: questions };
 };
@@ -99,3 +98,38 @@ export const checkForDuplicateUsernames = (name, category, difficulty, categoryN
         return false;
     }
 };
+
+export async function checkUsername(username) {
+    try {
+        await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name: username });
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+export function calcDuration(difficulty) {
+    switch (difficulty) {
+        case 'easy':
+            return 45
+        case 'medium':
+            return 30
+        case 'hard':
+            return 15
+        default:
+            console.error('Difficulty is missing');
+    }
+}
+
+export function calcScoreIncrement(difficulty) {
+    switch (difficulty) {
+        case 'easy':
+            return 1
+        case 'medium':
+            return 2
+        case 'hard':
+            return 3
+        default:
+            console.error('Difficulty is missing');
+    }
+}

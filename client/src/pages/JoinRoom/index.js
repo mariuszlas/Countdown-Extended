@@ -2,9 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { addCurrentPlayer, addPlayer } from '../../redux/actions.js';
-
-const url = 'https://countdown-quiz-api.herokuapp.com';
+import { addCurrentPlayer, addPlayer, checkUsername } from '../../redux/actions.js';
 
 function JoinRoom() {
 
@@ -28,15 +26,6 @@ function JoinRoom() {
         dispatch(addPlayer(username, roomNo, false));
         dispatch(addCurrentPlayer(username));
         history.push('/waiting-room');
-    }
-
-    async function checkUsername(username) {
-        try {
-            await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name: username });
-            return true;
-        } catch (error) {
-            return false;
-        }
     }
 
     return (

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
-import { cleanString, firstCharUpperCase } from '../../redux/actions.js'
+import { cleanString, firstCharUpperCase, calcDuration, calcScoreIncrement } from '../../redux/actions.js'
 
 export const QuizPage = ({ test }) => {
 
@@ -25,31 +25,6 @@ export const QuizPage = ({ test }) => {
     
     const Difficulty = firstCharUpperCase(difficulty);
 
-    function calcDuration() {
-        switch (difficulty) {
-            case 'easy':
-                return 45
-            case 'medium':
-                return 30
-            case 'hard':
-                return 15
-            default:
-                console.error('Difficulty is missing');
-        }
-    }
-
-    function calcScoreIncrement() {
-        switch (difficulty) {
-            case 'easy':
-                return 1
-            case 'medium':
-                return 2
-            case 'hard':
-                return 3
-            default:
-                console.error('Difficulty is missing');
-        }
-    }
 
     function resetScore() {
         dispatch({ type: 'RESET_SCORE', payload: 0})
@@ -58,7 +33,7 @@ export const QuizPage = ({ test }) => {
     function submitAnswer(e) {
         const submission = e.target.value;
         dispatch({type: 'UPDATE_SUBMISSIONS', payload: submission});
-        submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: calcScoreIncrement()}) : console.log('oops, wrong answer');
+        submission === c_answer ? dispatch({type: 'UPDATE_SCORE', payload: calcScoreIncrement(difficulty)}) : console.log('oops, wrong answer');
         setKey(x => ++x);
         setN(x => ++x);
     }
@@ -101,7 +76,7 @@ export const QuizPage = ({ test }) => {
                     }}
                     key={key}
                     isPlaying
-                    duration={calcDuration()}
+                    duration={calcDuration(difficulty)}
                     colors={[
                     ['#004777', 0.33],
                     ['#F7B801', 0.33],
