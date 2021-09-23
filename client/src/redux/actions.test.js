@@ -16,6 +16,12 @@ describe('redux actions', () => {
     })
 
 
+    test('addPlayer action', () => {
+        store.dispatch(addPlayer('testUser', 999, 'testHost'));
+
+        expect(store.getActions()).toEqual([{ type: 'ADD_PLAYER', payload: {room: 999, player: {username: 'testUser', host: 'testHost', totalScore: 0} } }]);
+    })
+
     test('updateGameSettings action', () => {
         store.dispatch(updateGameSettings( 23, 'diff', 'cat'));
 
