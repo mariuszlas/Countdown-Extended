@@ -41,4 +41,10 @@ describe('gameReducer', () => {
 
         expect(fakeState).toEqual({ questions: ['Q1', 'Q2', 'Q3'] });
     })
+
+    test('CURRENT_PLAYER', () => {
+        const fakeState = gameReducer({currentPlayer: ''}, {type: 'CURRENT_PLAYER', payload: 'testCurrentPlayer'});
+
+        expect(fakeState).toEqual({currentPlayer: 'testCurrentPlayer'});
+    })
 })
