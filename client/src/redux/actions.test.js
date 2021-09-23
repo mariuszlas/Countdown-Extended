@@ -21,4 +21,10 @@ describe('redux actions', () => {
 
         expect(store.getActions()).toEqual([{ type: 'ADD_QUESTIONS', payload: ['Q1', 'Q2'] }]);
     })
+
+    test('updateScore action', () => {
+        store.dispatch(updateScore(55));
+
+        expect(store.getActions()).toEqual([{ type: 'UPDATE_SCORE', payload: 55 }]);
+    })
 })
