@@ -6,7 +6,7 @@ const initState = {
         { question: 'question 1', correct_answer: 'answer 1', incorrect_answers: ['answer 2', 'answer 3', 'answer 4'] },
         { question: 'question 2', correct_answer: 'answer 2', incorrect_answers: ['answer 1', 'answer 3', 'answer 4'] }
     ],
-    submissions: [1, 2],
+    submissions: ['a', 'b'],
     gameSettings: {categoryName: 'test category', difficulty: 'test difficulty'}
 }
 
