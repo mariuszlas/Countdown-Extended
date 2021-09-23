@@ -47,4 +47,10 @@ describe('gameReducer', () => {
 
         expect(fakeState).toEqual({currentPlayer: 'testCurrentPlayer'});
     })
+
+    test('SET_ERROR', () => {
+        const fakeState = gameReducer({error: null}, {type: 'SET_ERROR', payload: 'testError'});
+
+        expect(fakeState).toEqual({error: 'testError'});
+    })
 })
