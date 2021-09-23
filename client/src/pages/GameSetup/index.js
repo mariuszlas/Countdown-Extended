@@ -13,11 +13,15 @@ function GameSetup() {
 
     useEffect(() => {
         async function getCategories() {
-            const { data } = await axios.get('https://opentdb.com/api_category.php');
-            const options = data.trivia_categories.map(
-                category => <option key={category.id} value={category.id}>{category.name}</option>
-            );
-            setCategories(options);
+            try {
+                const { data } = await axios.get('https://opentdb.com/api_category.php');
+                const options = data.trivia_categories.map(
+                    category => <option key={category.id} value={category.id}>{category.name}</option>
+                );
+                setCategories(options);
+            } catch (err) {
+                console.error(err);
+            }
         }
         getCategories();
     }, [])
