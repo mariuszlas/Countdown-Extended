@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { updateSocket, addQuestions, addPlayer, updateGameSettings, setError } from '../../redux/actions.js';
 
-
 function WaitingRoom() {
 
     const dispatch = useDispatch();
@@ -19,8 +18,7 @@ function WaitingRoom() {
     const host = players.filter(player => player.username === username)[0].host;
 
     useEffect(() => {
-        const socket = io(url);
-        // Add socket to the redux store
+        const socket = io('https://countdown-quiz-api.herokuapp.com');
         dispatch(updateSocket(socket));
 
         // send request to add player to the room
