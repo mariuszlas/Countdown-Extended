@@ -37,11 +37,18 @@ function GameSetup() {
         const room = Math.round(Math.random() * 1000000000);
 
         const isValid = await dispatch(
-            checkForDuplicateUsernames(username, category, difficulty, categoryName, room)
+            checkForDuplicateUsernames(
+                username,
+                room,
+                true,
+                category,
+                difficulty,
+                categoryName
+            )
         );
 
         if (!isValid) {
-            alert('This username is already been taken');
+            alert('This username has already been taken');
             setUsername('');
         } else {
             history.replace('/waiting-room');
