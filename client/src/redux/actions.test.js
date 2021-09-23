@@ -1,7 +1,7 @@
 import thunk from "redux-thunk";
 import configureMockStore from "redux-mock-store";
 
-import { addQuestions, updateScore, addCurrentPlayer, setError, updatePlayerResults, calcDuration, calcScoreIncrement } from "./actions";
+import { addPlayer, updateGameSettings, addQuestions, updateScore, addCurrentPlayer, setError, updatePlayerResults, calcDuration, calcScoreIncrement } from "./actions";
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -15,6 +15,12 @@ describe('redux actions', () => {
         store.clearActions();
     })
 
+
+    test('updateGameSettings action', () => {
+        store.dispatch(updateGameSettings( 23, 'diff', 'cat'));
+
+        expect(store.getActions()).toEqual([{ type: 'UPDATE_GAME_SETTINGS', payload: {category: 23, difficulty: 'diff', categoryName: 'cat'} }]);
+    })
     
     test('addQuestions action', () => {
         store.dispatch(addQuestions(['Q1', 'Q2']));
