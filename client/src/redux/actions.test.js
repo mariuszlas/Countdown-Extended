@@ -1,7 +1,10 @@
+import axios from "axios";
 import thunk from "redux-thunk";
 import configureMockStore from "redux-mock-store";
 
-import { addPlayer, updateGameSettings, addQuestions, updateScore, addCurrentPlayer, setError, updatePlayerResults, calcDuration, calcScoreIncrement } from "./actions";
+import { addPlayer, updateGameSettings, addQuestions, updateScore, addCurrentPlayer, setError, updatePlayerResults, calcDuration, calcScoreIncrement, checkUsername } from "./actions";
+
+jest.mock('axios');
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -74,5 +77,31 @@ describe('redux actions', () => {
         for (let i = 0; i < difficulties.length; i++) {
             expect(calcScoreIncrement(difficulties[i])).toEqual(increments[i]);
         }
+    })
+
+    
+    describe('checkUsername', () => {
+        
+        test('returns true on successful api post', async () => {
+            jest.spyOn(axios, 'post').mockResolvedValue();
+    
+            const isValid = await checkUsername();
+    
+            expect(isValid).toEqual(true);
+        })
+
+        test('returns false on unsuccessful api post', async () => {
+            let isValid;
+            
+            jest.spyOn(axios, 'post').mockRejectedValue();
+            
+            try {
+                isValid = await checkUsername();
+            } catch (err) {
+                
+            }
+    
+            expect(isValid).toEqual(false);
+        })
     })
 })
