@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
     ADD_PLAYER,
     ADD_QUESTIONS,
@@ -86,3 +87,15 @@ export const firstCharUpperCase = (str) => {
 
     return Str.join('')
 }
+
+export const checkForDuplicateUsernames = (name, category, difficulty, categoryName, room) => async dispatch  => {
+    try {
+        await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name });
+        dispatch(updateGameSettings(category, difficulty, categoryName));
+        dispatch(addPlayer(name, room, true));
+        dispatch(addCurrentPlayer(name));
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
