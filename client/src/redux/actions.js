@@ -64,6 +64,8 @@ export const cleanString = str => {
         .replace(/&#039;/g, "'")
         .replace(/&Eacute;/g, 'E')
         .replace(/&eacute;/g, 'e')
+        .replace(/&Egrave;/g, 'E')
+        .replace(/&egrave;/g, 'e')
         .replace(/&amp;/g, ' & ')
         .replace(/&Uuml;/g, 'U')
         .replace(/&pi;/g, 'pi')
