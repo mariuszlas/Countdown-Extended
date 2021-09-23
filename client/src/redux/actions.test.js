@@ -15,7 +15,12 @@ describe('redux actions', () => {
     const store = mockStore({});
 
     beforeEach(() => {
+        jest.clearAllMocks();
         store.clearActions();
+    })
+
+    afterAll(() => {
+        jest.resetAllMocks();
     })
 
 
@@ -81,6 +86,14 @@ describe('redux actions', () => {
 
     describe('checkForDuplicateUsernames', () => {
 
+        test('returns true on successful api post', async () => {
+            jest.spyOn(axios, 'post').mockResolvedValue();
+            
+            const isNotDuplicate = await checkForDuplicateUsernames()();
+    
+            expect(isNotDuplicate).toEqual(true);
+        })
+
         test('returns false on unsuccessful api post', async () => {
             let isNotDuplicate;
             
@@ -97,28 +110,28 @@ describe('redux actions', () => {
     })
 
     
-    describe('checkUsername', () => {
+    // describe('checkUsername', () => {
         
-        test('returns true on successful api post', async () => {
-            jest.spyOn(axios, 'post').mockResolvedValue();
+    //     test('returns true on successful api post', async () => {
+    //         jest.spyOn(axios, 'post').mockResolvedValue();
     
-            const isValid = await checkUsername();
+    //         const isValid = await checkUsername();
     
-            expect(isValid).toEqual(true);
-        })
+    //         expect(isValid).toEqual(true);
+    //     })
 
-        test('returns false on unsuccessful api post', async () => {
-            let isValid;
+    //     test('returns false on unsuccessful api post', async () => {
+    //         let isValid;
             
-            jest.spyOn(axios, 'post').mockRejectedValue();
+    //         jest.spyOn(axios, 'post').mockRejectedValue();
             
-            try {
-                isValid = await checkUsername();
-            } catch (err) {
+    //         try {
+    //             isValid = await checkUsername();
+    //         } catch (err) {
                 
-            }
+    //         }
     
-            expect(isValid).toEqual(false);
-        })
-    })
+    //         expect(isValid).toEqual(false);
+    //     })
+    // })
 })
