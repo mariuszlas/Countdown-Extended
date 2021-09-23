@@ -72,6 +72,8 @@ export const cleanString = str => {
         .replace(/&ntilde;/g, 'n')
         .replace(/&Aacute;/g, 'A')
         .replace(/&aacute;/g, 'a')
+        .replace(/&Egrave;/g, 'E')
+        .replace(/&egrave;/g, 'e')
     return cleanStr
 };
 
@@ -85,4 +87,30 @@ export const firstCharUpperCase = (str) => {
     Str[0] = Str[0].toUpperCase();
 
     return Str.join('')
+}
+
+export function calcDuration(difficulty) {
+    switch (difficulty) {
+        case 'easy':
+            return 45
+        case 'medium':
+            return 30
+        case 'hard':
+            return 15
+        default:
+            console.error('Difficulty is missing');
+    }
+}
+
+export function calcScoreIncrement(difficulty) {
+    switch (difficulty) {
+        case 'easy':
+            return 1
+        case 'medium':
+            return 2
+        case 'hard':
+            return 3
+        default:
+            console.error('Difficulty is missing');
+    }
 }
