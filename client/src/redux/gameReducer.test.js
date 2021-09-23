@@ -35,4 +35,10 @@ describe('gameReducer', () => {
 
         expect(fakeState).toEqual( {gameSettings: {difficulty: 'Hard', category: 88, categoryName: 'cats'} });
     })
+
+    test('ADD_QUESTIONS', () => {
+        const fakeState = gameReducer({ questions: [] }, { type: 'ADD_QUESTIONS', payload: ['Q1', 'Q2', 'Q3'] });
+
+        expect(fakeState).toEqual({ questions: ['Q1', 'Q2', 'Q3'] });
+    })
 })
