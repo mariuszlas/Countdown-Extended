@@ -34,7 +34,7 @@ io.on('connection', socket => {
         const roomNo = parseInt(gameInfo.roomNo);
 
         // check if room exists and if there are already 4 sockets conected, deny entry to the room
-        if (io.sockets.adapter.rooms.has(roomNo) && io.sockets.adapter.rooms.get(roomNo).size > 3) {
+        if (io.sockets.adapter.rooms.has(roomNo) && io.sockets.adapter.rooms.get(roomNo).size > 5) {
             socket.emit('entry-denied', 'Entry denied. The maximum number of players in room was exceeded.');
             socket.disconnect();
         } else {
