@@ -35,7 +35,7 @@ describe('redux actions', () => {
 
         expect(store.getActions()).toEqual([{ type: 'UPDATE_GAME_SETTINGS', payload: {category: 23, difficulty: 'diff', categoryName: 'cat'} }]);
     })
-    
+
     test('addQuestions action', () => {
         store.dispatch(addQuestions(['Q1', 'Q2']));
 
@@ -82,5 +82,5 @@ describe('redux actions', () => {
         for (let i = 0; i < difficulties.length; i++) {
             expect(calcScoreIncrement(difficulties[i])).toEqual(increments[i]);
         }
-    })
-})
+    });
+});
