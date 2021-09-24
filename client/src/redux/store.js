@@ -7,6 +7,5 @@ const store = createStore(
     gameReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
-const persistor = null;
 
-export { store, persistor };
+export { store };
