@@ -8,7 +8,8 @@ import {
     UPDATE_SOCKET,
     RESET_SCORE,
     UPDATE_RESULTS,
-    UPDATE_SUBMISSIONS
+    UPDATE_SUBMISSIONS,
+    RESET_STATE
 } from './constants';
 
 /**
@@ -69,6 +70,9 @@ const gameReducer = (state = initialState, action) => {
         case UPDATE_RESULTS:
             const updatedResults = [...state.results, ...action.payload]
             return { ...state, results: [...new Set(updatedResults)]  };
+        case RESET_STATE:
+            state = initialState;
+            return state;
         default:
             return state;
     }

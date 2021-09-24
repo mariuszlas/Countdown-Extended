@@ -3,6 +3,7 @@ import {
     ADD_PLAYER,
     ADD_QUESTIONS,
     CURRENT_PLAYER,
+    RESET_STATE,
     SET_ERROR,
     UPDATE_GAME_SETTINGS,
     UPDATE_RESULTS,
@@ -131,4 +132,8 @@ export function calcScoreIncrement(difficulty) {
             console.error('Difficulty is missing');
             return new Error('Difficulty is missing')
     }
+}
+
+export function resetState() {
+    return { type: RESET_STATE }
 }

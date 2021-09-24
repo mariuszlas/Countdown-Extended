@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom';
+import { resetState } from '../../redux/actions';
 import '../index.css';
 
 function Home() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(resetState());
+    }, []);
+
     return (
         <>
             <div className="spacing">

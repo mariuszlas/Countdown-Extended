@@ -69,7 +69,7 @@ function WaitingRoom() {
                 ? <p role="alert">{error}</p>
                 : <div>
                     <p role="instructions">Share the room number with your friends so they can join this game!</p>
-                    <p role="instructions">You can have a maximum of four players in total.</p>
+                    <p role="instructions">You can have a maximum of six players in total.</p>
                     <p role="room">The room number is: <span id="room-no">{roomNo}</span></p>
                     <p role="room">Players in room:</p>
                     <div>{renderPlayers()}</div>
