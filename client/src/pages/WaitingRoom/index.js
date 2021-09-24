@@ -67,7 +67,7 @@ function WaitingRoom() {
             <h2>Waiting Room</h2>
             { error
                 ? <p role="alert">{error}</p>
-                : <div>
+                : <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
                     <p role="instructions">Share the room number with your friends so they can join this game!</p>
                     <p role="instructions">You can have a maximum of six players in total.</p>
                     <p role="room">The room number is: <span id="room-no">{roomNo}</span></p>

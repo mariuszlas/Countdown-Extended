@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require('axios');
 import thunk from "redux-thunk";
 import configureMockStore from "redux-mock-store";
 
@@ -83,55 +83,4 @@ describe('redux actions', () => {
             expect(calcScoreIncrement(difficulties[i])).toEqual(increments[i]);
         }
     })
-
-    describe('checkForDuplicateUsernames', () => {
-
-        test('returns true on successful api post', async () => {
-            jest.spyOn(axios, 'post').mockResolvedValue();
-            
-            const isNotDuplicate = await checkForDuplicateUsernames()();
-    
-            expect(isNotDuplicate).toEqual(true);
-        })
-
-        test('returns false on unsuccessful api post', async () => {
-            let isNotDuplicate;
-            
-            jest.spyOn(axios, 'post').mockRejectedValue();
-            
-            try {
-                isNotDuplicate = await checkForDuplicateUsernames()();
-            } catch (err) {
-                
-            }
-    
-            expect(isNotDuplicate).toEqual(false);
-        })
-    })
-
-    
-    // describe('checkUsername', () => {
-        
-    //     test('returns true on successful api post', async () => {
-    //         jest.spyOn(axios, 'post').mockResolvedValue();
-    
-    //         const isValid = await checkUsername();
-    
-    //         expect(isValid).toEqual(true);
-    //     })
-
-    //     test('returns false on unsuccessful api post', async () => {
-    //         let isValid;
-            
-    //         jest.spyOn(axios, 'post').mockRejectedValue();
-            
-    //         try {
-    //             isValid = await checkUsername();
-    //         } catch (err) {
-                
-    //         }
-    
-    //         expect(isValid).toEqual(false);
-    //     })
-    // })
 })

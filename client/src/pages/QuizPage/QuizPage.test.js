@@ -1,5 +1,6 @@
 import { default as QuizPage } from '.';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 const initState = {
     questions: [
@@ -29,4 +30,25 @@ describe('QuizPage', () => {
         expect(category.textContent).toContain('test category');
         expect(difficulty.textContent).toContain('Easy')
     });
+
+    test('renders next question upon answer submission', () => {
+        const question = screen.getAllByRole('heading')[3];
+        expect(question.textContent).toEqual('question 1');
+
+        const ansBtn = screen.getAllByRole('button')[0];
+        userEvent.click(ansBtn);
+
+        const newQuestion = screen.getAllByRole('heading')[3];
+        expect(question.textContent).toEqual('question 2');
+    })
+
+    // test('asdf', () => {
+    //     const question = screen.getAllByRole('heading')[3];
+    //     const ansBtn = screen.getAllByRole('button')[0];
+    //     userEvent.click(ansBtn);
+    //     const ansBtn2 = screen.getAllByRole('button')[0];
+    //     userEvent.click(ansBtn2);
+        
+    //     console.log(question.textContent);
+    // })
 });
