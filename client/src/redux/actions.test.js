@@ -82,5 +82,5 @@ describe('redux actions', () => {
         for (let i = 0; i < difficulties.length; i++) {
             expect(calcScoreIncrement(difficulties[i])).toEqual(increments[i]);
         }
-    });
-});
+    })
+})
