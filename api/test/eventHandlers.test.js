@@ -30,24 +30,29 @@ describe('event handlers', () => {
         expect(mockEmit.mock.calls[0][1]).toBe(mockData)
     });
 
-    // it('emits new player object to clients in a room', () => {
-    //     console.log(jest.fn())
-    //     const mockEmit = jest.fn();
-    //     const mockTo = jest.fn().mockImplementation(() => mockEmit);
-    //     const mockSocket = { id: "mockId", to: mockTo };
-    //     const player = updatePlayers(mockSocket, 213224, { username: 'test', host: true });
-    //     epect(mockEmit).toHaveBeenCalledTimes(1);
-    // });
+    it('emits new player object to clients in a room', () => {
+        // console.log(jest.fn())
+        const mockEmit = jest.fn();
+        const mockTo = jest.fn(() => {return {emit: mockEmit}})
+        const mockSocket = { id: "mockId", to: mockTo };
+        const player = updatePlayers(mockSocket, 213224, { username: 'test', host: true });
+        expect(mockEmit).toHaveBeenCalledTimes(1);
+    });
 
     it('sends players data', () => {
         const mockEmit = jest.fn();
-        sendPlayers({ emit: mockEmit },
+        const mockSocket = {emit: mockEmit, roomNo: 123456, username: 'testUsername'};
+        sendPlayers(mockSocket,
             [{ gameSettings: 'test' }],
-            [{roomNo: 123465, username: 'testUsername'}],
+            [
+                {roomNo: 123465, username: 'testUsername'},
+                {roomNo: 123456, username: 'differentUsername'}
+            ],
             123456,
             { username:'testUsername' });
 
         expect(mockEmit).toHaveBeenCalledTimes(1);
         expect(mockEmit.mock.calls[0][0]).toBe('players-in-room');
+        expect(mockEmit.mock.calls[0][1]).toEqual({players: [{roomNo: 123456, username: 'differentUsername'}], gameSettings: 'test'});
     });
 });
