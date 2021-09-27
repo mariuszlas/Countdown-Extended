@@ -9,7 +9,8 @@ async function updateRooms(rooms, roomNo, gameInfo) {
             roomNo: roomNo,
             questions: questionsData,
             gameSettings: gameInfo.gameSettings,
-            scores: []
+            scores: [],
+            messages: []
         };
         rooms.push(room);
     };
@@ -46,4 +47,11 @@ function sendPlayers(socket, roomData, players, roomNo, gameInfo) {
     });
 }
 
-module.exports = { updateRooms, updatePlayers, sendQuestions, sendPlayers };
+function joinChat(socket, msg, rooms) {
+    // send all messages to new clients
+    const room = rooms.filter(room => parseInt(room.roomNo) === parseInt(msg.roomNo))[0]
+    const messages = room.messages;
+    socket.emit('join-chat', messages);
+}
+
+module.exports = { updateRooms, updatePlayers, sendQuestions, sendPlayers, joinChat };

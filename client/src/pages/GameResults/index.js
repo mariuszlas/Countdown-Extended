@@ -26,7 +26,7 @@ const GameResults = () => {
 
         try {
             if (results.some(result => result.username === currentPlayer)) return;
-            await axios.post('https://countdown-quiz-api.herokuapp.com/score', { username: currentPlayer, score: totalScore });
+            await axios.post('https://countdown-quiz-ext.herokuapp.com/score', { username: currentPlayer, score: totalScore });
         } catch (error) {
             console.error(`Error adding score to server `, error.message);
             dispatch({ type: SET_ERROR, payload: error.message });

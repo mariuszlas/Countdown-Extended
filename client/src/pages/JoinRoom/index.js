@@ -30,23 +30,9 @@ function JoinRoom() {
                 </p>
             </section>
             <form role="game-setup" onSubmit={e => handleSubmit(e)}>
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="username"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    required
-                />
+                <input type="text" id="username" placeholder="username" value={username} onChange={e => setUsername(e.target.value)} required/>
                 <br />
-                <input
-                    type="text"
-                    id="roomNo"
-                    placeholder="room number"
-                    value={roomNo}
-                    onChange={e => setRoomNo(e.target.value)}
-                    required
-                />
+                <input type="text" id="roomNo" placeholder="room number" value={roomNo} onChange={e => setRoomNo(e.target.value)} required/>
                 <br />
                 <input id="submit" type="submit" value="Join the Waiting Room" />
             </form>

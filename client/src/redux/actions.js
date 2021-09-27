@@ -84,7 +84,7 @@ export const firstCharUpperCase = (str) => {
     for (let i = 0; i < l; i++) {
         Str[i] = str[i];
     }
-    
+
     Str[0] = Str[0].toUpperCase();
 
     return Str.join('')
@@ -92,12 +92,12 @@ export const firstCharUpperCase = (str) => {
 
 export const checkForDuplicateUsernames = (name, room, isHost, category = null, difficulty = null, categoryName = null) => async dispatch  => {
     try {
-        await axios.post('https://countdown-quiz-api.herokuapp.com/usernames', { name });
+        await axios.post('https://countdown-quiz-ext.herokuapp.com/usernames', { name });
 
         dispatch(addPlayer(name, room, isHost));
         dispatch(addCurrentPlayer(name));
-        
-        // When this function gets called in the 'JoinRoom' page, the 'category', 'difficulty' and 'categoryName' 
+
+        // When this function gets called in the 'JoinRoom' page, the 'category', 'difficulty' and 'categoryName'
         // would have already been set, so we don't want to dispatch the below function again.
         if (category) dispatch(updateGameSettings(category, difficulty, categoryName));
         return true;

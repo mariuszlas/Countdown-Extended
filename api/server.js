@@ -3,7 +3,7 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const router = require('./routes/router.js');
-const { updateRooms, updatePlayers, sendQuestions, sendPlayers } = require('./ws/eventHandlers.js');
+const { updateRooms, updatePlayers, sendQuestions, sendPlayers, joinChat } = require('./ws/eventHandlers.js');
 
 //------------------- CREATE HTTP SERVER ---------------------//
 const app = express();
@@ -33,8 +33,8 @@ io.on('connection', socket => {
     socket.on('add-player', async gameInfo => {
         const roomNo = parseInt(gameInfo.roomNo);
 
-        // check if room exists and if there are already 4 sockets conected, deny entry to the room
-        if (io.sockets.adapter.rooms.has(roomNo) && io.sockets.adapter.rooms.get(roomNo).size > 5) {
+        // check if room exists and if there are already 20 sockets conected, deny entry to the room
+        if (io.sockets.adapter.rooms.has(roomNo) && io.sockets.adapter.rooms.get(roomNo).size > 19) {
             socket.emit('entry-denied', 'Entry denied. The maximum number of players in room was exceeded.');
             socket.disconnect();
         } else {
@@ -59,6 +59,15 @@ io.on('connection', socket => {
 
             socket.emit('getAllScores', [...room.scores ])
             socket.to(roomNo).emit('getAllScores', [results]);
+        });
+
+        socket.on('join-chat', msg => joinChat(socket, msg, rooms))
+
+        socket.on('message', msg => {
+            const room = rooms.filter(room => parseInt(room.roomNo) === parseInt(msg.roomNo))[0];
+            const idx = rooms.indexOf(room)
+            rooms[idx].messages.push(msg);
+            socket.to(roomNo).emit('message', msg);
         });
 
         socket.on('disconnect', socket => {
